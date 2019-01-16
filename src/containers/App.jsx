@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import Calculator from './Calculator';
-import ToDoList from './ToDoList'
+import TodoList from './TodoList'
 import { Route, Switch, Link } from 'react-router-dom';
 
 
@@ -17,12 +17,12 @@ class App extends Component {
                 <div>Hi! what do you want?</div>
                 <ul>
                   <li><Link to='/calculator'>Calculator!</Link></li>
-                  <li><Link to='/todolist'>To Do List!</Link></li>
+                  <li><Link to='/todolist'>To do List!</Link></li>
                 </ul>
               </div>
             </Route>
             < Route exact path='/calculator' component={Calculator} />
-            < Route exact path='/todolist' component={ToDoList} />
+            < Route exact path='/todolist' component={TodoList} />
           </Switch>
         </main>
       </Fragment>
