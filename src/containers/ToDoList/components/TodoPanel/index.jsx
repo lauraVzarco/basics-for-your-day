@@ -4,9 +4,15 @@ import React, { Component, Fragment } from 'react';
 
 class TodoPanel extends Component {
     render() {
+        const {
+            previousTasks,
+        } = this.props
         return (
             <Fragment>
-                <div>Panel donde voy a poner los todos escritos</div>
+                <ul>
+                    {previousTasks.map((task) => <li key={task}> {task}
+                    </li>)}
+                </ul>
             </Fragment>
         )
     }

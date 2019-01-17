@@ -10,7 +10,6 @@ const evaldata = (jsExpression) => {
 }
 
 const Calculator = (state = AppModel, action) => {
-    debugger;
     if (action.type === "CLEAR")
         return AppModel
     else if (action.type === "EQUAL")

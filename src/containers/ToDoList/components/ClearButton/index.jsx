@@ -6,7 +6,7 @@ class ClearButton extends Component {
     render() {
         return (
             <Fragment>
-                <button>ClearButton</button>
+                <button onClick={this.props.handleClear}>ClearButton</button>
             </Fragment>
         )
     }

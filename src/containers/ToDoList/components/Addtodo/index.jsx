@@ -4,9 +4,23 @@ import React, { Component, Fragment } from 'react';
 
 class Addtodo extends Component {
     render() {
+        const {
+            todo,
+            handleTask,
+            onSubmit
+        } = this.props
+
         return (
             <Fragment>
-                <input type="text" />
+                <form onSubmit={onSubmit}>
+                    <label htmlFor="todo"> Todo </label>
+                    <input
+                        type="text"
+                        placeholder='Whats need to be done?'
+                        value={todo}
+                        onChange={handleTask}
+                    />
+                </form>
             </Fragment>
         )
     }

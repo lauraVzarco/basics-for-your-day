@@ -10,13 +10,13 @@ import { clickClear, clickEqual, clickNumber } from './actions';
 
 
 class Calculator extends Component {
-    static propTypes = {
-        display: PropTypes.string,
-        result: PropTypes.boolean,
-        clear: PropTypes.func,
-        equal: PropTypes.func,
-        number: PropTypes.func
-    }
+    // static propTypes = {
+    //     display: PropTypes.string,
+    //     result: PropTypes.boolean,
+    //     clear: PropTypes.func,
+    //     equal: PropTypes.func,
+    //     number: PropTypes.string
+    // }
 
     // Para juntar utilidades de botones
 
