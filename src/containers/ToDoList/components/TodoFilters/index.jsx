@@ -4,12 +4,27 @@ import React, { Component, Fragment } from 'react';
 
 class TodoFilters extends Component {
     render() {
+        const {
+            onClick
+        } = this.props
         return (
             <Fragment>
                 <div>X items</div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Complete</button>
+                <div
+                    data-value="all"
+                    onClick={onClick}>
+                    All
+                </div>
+                <div
+                    data-value="uncompleted"
+                    onClick={onClick}>
+                    Uncompleted
+                    </div>
+                <div
+                    data-value="completed"
+                    onClick={onClick}>
+                    Completed
+                </div>
             </Fragment>
         )
     }

@@ -4,12 +4,14 @@ import Addtodo from './components/Addtodo';
 import TodoPanel from './components/TodoPanel';
 import TodoFilters from './components/TodoFilters';
 import ClearButton from './components/ClearButton';
+import './style.css'
 // import PropTypes from 'prop-types';
 
 class TodoList extends Component {
     state = {
-        currentTask: '',
+        currentTaskDescription: '',
         previousTasks: [],
+        filtervalue: 'all'
     }
 
     componentDidMount() {
@@ -23,23 +25,49 @@ class TodoList extends Component {
 
     handleTask = (e) => {
         this.setState({
-            currentTask: e.target.value
+            currentTaskDescription: e.target.value
         })
     }
 
     onSubmit = (e) => {
         e.preventDefault()
-        const previousTasks = this.state.previousTasks.concat(this.state.currentTask);
+        const task = {
+            description: this.state.currentTaskDescription,
+            isDone: false,
+        }
+        this.setState(prevState => ({
+            currentTaskDescription: '',
+            previousTasks: prevState.previousTasks.concat(task)
+        }), () => { window.localStorage.setItem('data', JSON.stringify(this.state.previousTasks)) })
+
+    }
+
+    handleDone = (e) => {
+        const clickedTaskDescription = e.target.dataset.value
+        // encontrar el index de la tarea seleccionada
+        const selectedTaskIndex = this.state.previousTasks.findIndex(task => task.description === clickedTaskDescription)
+        // Copiar el array de previous task y el objeto del task seleccionado
+        const newPreviousTasks = [...this.state.previousTasks]
+        const newSelectedTask = { ...this.state.previousTasks[selectedTaskIndex] }
+        //cambiar el objeto, meterlo en el nuevo array
+        newSelectedTask.isDone = !newSelectedTask.isDone
+        newPreviousTasks[selectedTaskIndex] = newSelectedTask
+        //cambiar el estado al array nuevo
         this.setState({
-            currentTask: '',
-            previousTasks
-        }, () => { console.log('submit', this.state.currentTask, this.state.previousTasks) })
-        window.localStorage.setItem('data', JSON.stringify(previousTasks))
+            previousTasks: newPreviousTasks
+        })
+    }
+
+    handleFilter = (e) => {
+        const clickedFilter = e.target.dataset.value
+        this.setState({
+            filtervalue: clickedFilter
+        })
     }
 
     handleClear = () => {
         this.setState({
-            currentTask: '',
+            currentTaskDescription: '',
             previousTasks: []
         })
         localStorage.removeItem('data')
@@ -48,20 +76,24 @@ class TodoList extends Component {
     render() {
         return (
             <Fragment>
-                <div>Todos</div>
-                <div>
-                    <ClearButton handleClear={this.handleClear} />
+                <h1 className="todo_title">todos</h1>
+                <ClearButton handleClear={this.handleClear} />
+                <div className="todo_container">
                     <Addtodo
-                        todo={this.state.currentTask}
+                        todo={this.state.currentTaskDescription}
                         handleTask={this.handleTask}
                         onSubmit={this.onSubmit} />
                     <TodoPanel
-                        todo={this.state.currentTask}
-                        previousTasks={this.state.previousTasks} />
-                    <TodoFilters />
+                        previousTasks={this.state.previousTasks}
+                        handleDone={this.handleDone}
+                    />
+                    <TodoFilters
+                        onClick={(e) => { this.handleFilter(e) }}
+                        previousTasks={this.state.previousTasks}
+                    />
                 </div>
                 <Link to='/'>Home</Link>
-            </Fragment>
+            </Fragment >
         );
     }
 }

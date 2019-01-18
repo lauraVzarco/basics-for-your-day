@@ -1,19 +1,21 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import './style.css'
 
 // import PropTypes from 'prop-types';
 
 class TodoPanel extends Component {
+
     render() {
         const {
             previousTasks,
+            handleDone,
         } = this.props
+
         return (
-            <Fragment>
-                <ul>
-                    {previousTasks.map((task) => <li key={task}> {task}
-                    </li>)}
-                </ul>
-            </Fragment>
+            <ul onDoubleClick={handleDone}>
+                {previousTasks.map((task) => <li key={task.description} className={task.isDone ? 'done' : 'notdone'} data-value={task.description}  > {task.description}
+                </li>)}
+            </ul>
         )
     }
 }

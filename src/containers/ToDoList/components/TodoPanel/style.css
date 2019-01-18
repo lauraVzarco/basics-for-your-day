@@ -1,0 +1,9 @@
+.done {
+    text-decoration: line-through;
+    user-select: none;
+}
+
+.notdone{
+    text-decoration: none;
+    user-select: none;
+}
