@@ -1,12 +1,19 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 // import PropTypes from 'prop-types';
 
 class TodoFilters extends Component {
+
+    componentDidMount() {
+        console.log(this.props.location.search) // "?filter=top&origin=im"
+    }
+
     render() {
         const {
             onClick
         } = this.props
+
         return (
             <Fragment>
                 <div>X items</div>

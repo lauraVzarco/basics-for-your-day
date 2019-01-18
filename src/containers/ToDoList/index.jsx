@@ -74,6 +74,17 @@ class TodoList extends Component {
     }
 
     render() {
+
+        const filteredList = this.state.previousTasks.filter((task) => {
+            if (this.state.filtervalue === "completed") {
+                return task.isDone === true
+            } else if (this.state.filtervalue === "uncompleted") {
+                return task.isDone === false
+            } else if (this.state.filtervalue === "all") {
+                return task
+            }
+        })
+
         return (
             <Fragment>
                 <h1 className="todo_title">todos</h1>
@@ -84,8 +95,8 @@ class TodoList extends Component {
                         handleTask={this.handleTask}
                         onSubmit={this.onSubmit} />
                     <TodoPanel
-                        previousTasks={this.state.previousTasks}
                         handleDone={this.handleDone}
+                        list={filteredList}
                     />
                     <TodoFilters
                         onClick={(e) => { this.handleFilter(e) }}

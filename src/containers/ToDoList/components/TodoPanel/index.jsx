@@ -7,13 +7,13 @@ class TodoPanel extends Component {
 
     render() {
         const {
-            previousTasks,
+            list,
             handleDone,
         } = this.props
 
         return (
             <ul onDoubleClick={handleDone}>
-                {previousTasks.map((task) => <li key={task.description} className={task.isDone ? 'done' : 'notdone'} data-value={task.description}  > {task.description}
+                {list.map((task) => <li key={task.description} className={task.isDone ? 'done' : 'notdone'} data-value={task.description}  > {task.description}
                 </li>)}
             </ul>
         )
