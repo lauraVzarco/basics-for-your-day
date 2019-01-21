@@ -13,9 +13,14 @@ class App extends Component {
         <main className="Main">
           <Switch>
             <Route exact path='/'>
-              <div>
-                <div>Hi! what do you want?</div>
-                <ul>
+              <div className="app_container">
+                <h1 className="app_title">
+                  Hi! This is Basics for your day.
+                </h1 >
+                <h2 className="app_subtitle">
+                  What do you want?
+                </h2>
+                <ul className="app_list">
                   <li><Link to='/calculator'>Calculator!</Link></li>
                   <li><Link to='/todolist'>To do List!</Link></li>
                 </ul>

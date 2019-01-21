@@ -6,7 +6,7 @@ import './Calculator.css';
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux';
-import { clickClear, clickEqual, clickNumber } from './actions';
+import { clickClear, clickEqual, clickNumber, clickOperator } from './actions';
 
 
 class Calculator extends Component {
@@ -25,15 +25,15 @@ class Calculator extends Component {
             this.props.clear()
         } else if (value === "=") {
             this.props.equal()
+        } else if ('0123456789'.includes(value)) {
+            this.props.number(value)
         }
         else {
-            if (this.props.result === true) {
-                this.props.clear()
-            } else {
-                this.props.number(value)
-            }
+            this.props.operator(value)
         }
     }
+
+
     render() {
         return (
             <Fragment>
@@ -53,13 +53,14 @@ class Calculator extends Component {
 const mapDispatchToProps = dispatch => ({
     clear: () => dispatch(clickClear()),
     equal: () => dispatch(clickEqual()),
-    number: (value) => dispatch(clickNumber(value))
+    number: (value) => dispatch(clickNumber(value)),
+    operator: (value) => dispatch(clickOperator(value))
 })
 
 const mapStateToProps = (state) => {
     return {
         display: state.Calculator.display,
-        result: state.Calculator.result
+
     }
 }
 

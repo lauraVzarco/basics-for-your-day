@@ -55,7 +55,8 @@ class TodoList extends Component {
         //cambiar el estado al array nuevo
         this.setState({
             previousTasks: newPreviousTasks
-        })
+        }, () => window.localStorage.setItem('data', JSON.stringify(this.state.previousTasks)))
+
     }
 
     handleFilter = (e) => {
@@ -81,14 +82,14 @@ class TodoList extends Component {
             } else if (this.state.filtervalue === "uncompleted") {
                 return task.isDone === false
             } else if (this.state.filtervalue === "all") {
-                return task
+                return true
             }
         })
 
         return (
             <Fragment>
                 <h1 className="todo_title">todos</h1>
-                <ClearButton handleClear={this.handleClear} />
+                <div className="todo_clearbutton"><ClearButton handleClear={this.handleClear} /> </div>
                 <div className="todo_container">
                     <Addtodo
                         todo={this.state.currentTaskDescription}
@@ -99,8 +100,9 @@ class TodoList extends Component {
                         list={filteredList}
                     />
                     <TodoFilters
-                        onClick={(e) => { this.handleFilter(e) }}
-                        previousTasks={this.state.previousTasks}
+                        onClick={this.handleFilter}
+                        numberOfItems={filteredList.length}
+                        selectedFilter={this.state.filtervalue}
                     />
                 </div>
                 <Link to='/'>Home</Link>

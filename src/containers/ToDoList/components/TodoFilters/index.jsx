@@ -1,36 +1,39 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
+import "./style.css"
 // import PropTypes from 'prop-types';
 
 class TodoFilters extends Component {
 
-    componentDidMount() {
-        console.log(this.props.location.search) // "?filter=top&origin=im"
-    }
-
     render() {
         const {
-            onClick
+            onClick,
+            numberOfItems,
+            selectedFilter
         } = this.props
 
         return (
             <Fragment>
-                <div>X items</div>
-                <div
-                    data-value="all"
-                    onClick={onClick}>
-                    All
+                <div className="todofilter_counter"> {numberOfItems} items</div>
+                <div className="todofilter_menu">
+                    <div
+                        className={selectedFilter === "all" ? "active" : "inactive"}
+                        data-value="all"
+                        onClick={onClick}>
+                        All
                 </div>
-                <div
-                    data-value="uncompleted"
-                    onClick={onClick}>
-                    Uncompleted
+                    <div
+                        className={selectedFilter === "uncompleted" ? "active" : "inactive"}
+                        data-value="uncompleted"
+                        onClick={onClick}>
+                        Uncompleted
                     </div>
-                <div
-                    data-value="completed"
-                    onClick={onClick}>
-                    Completed
+                    <div
+                        className={selectedFilter === "completed" ? "active" : "inactive"}
+                        data-value="completed"
+                        onClick={onClick}>
+                        Completed
+                </div>
                 </div>
             </Fragment>
         )

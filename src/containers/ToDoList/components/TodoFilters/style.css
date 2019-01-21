@@ -1,0 +1,18 @@
+.inactive {
+    text-decoration: none;
+    padding: 6px;
+    user-select: none;
+}
+
+.active{
+    color: darkmagenta;
+    font-weight: 700;
+    padding: 6px;
+    user-select: none;
+}
+
+.todofilter_menu {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}

@@ -12,7 +12,8 @@ class TodoPanel extends Component {
         } = this.props
 
         return (
-            <ul onDoubleClick={handleDone}>
+            <ul
+                onDoubleClick={handleDone}>
                 {list.map((task) => <li key={task.description} className={task.isDone ? 'done' : 'notdone'} data-value={task.description}  > {task.description}
                 </li>)}
             </ul>

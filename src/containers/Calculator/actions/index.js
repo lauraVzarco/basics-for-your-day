@@ -1,4 +1,4 @@
-import { BUTTON_NUMBER, CLEAR, EQUAL } from '../actionTypes'
+import { BUTTON_NUMBER, CLEAR, EQUAL, OPERATOR } from '../actionTypes'
 
 export const clickNumber = (value) => ({
     type: BUTTON_NUMBER,
@@ -12,5 +12,10 @@ export const clickClear = (value) => ({
 
 export const clickEqual = (value) => ({
     type: EQUAL,
+    payload: value,
+})
+
+export const clickOperator = (value) => ({
+    type: OPERATOR,
     payload: value,
 })
