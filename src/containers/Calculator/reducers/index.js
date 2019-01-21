@@ -1,10 +1,13 @@
 import { AppModel } from '../models';
 
 //Para operar
+
+//Busco que la tecla seleccionada contenga un digito
 const isDigitString = (char) => {
     return '0123456789'.includes(char)
 }
 
+// creo tres expresiones, el primer número, el operador y el segundo número. Si el valor pulsado es un número y no hay un operador, lo meto en el first number. En el momento que pulso el operador, se actualiza operator, y si meto otro número y ya hay un operador, lo meto en el second number
 const getOperation = (jsExpression) => {
     let firstNumber = '';
     let operator = '';
@@ -27,6 +30,7 @@ const getOperation = (jsExpression) => {
     }
 }
 
+//Buscas el tipo de operador y realizas la función que quieres. Suma, resta, multiplicación, división...
 const symbolToFnMap = {
     '+': (a, b) => a + b,
     '-': (a, b) => a - b,
@@ -34,6 +38,7 @@ const symbolToFnMap = {
     '/': (a, b) => a / b
 }
 
+//realizas la operación, llamas a la funcion get number y si hay un operador, llama a la que opera. Si no, se toma como firstnumber (Para cuando has dado igual y quieres continuar)
 const evaldata = (jsExpression) => {
     try {
         const operation = getOperation(jsExpression)

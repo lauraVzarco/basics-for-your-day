@@ -21,8 +21,14 @@ class App extends Component {
                   What do you want?
                 </h2>
                 <ul className="app_list">
-                  <li><Link to='/calculator'>Calculator!</Link></li>
-                  <li><Link to='/todolist'>To do List!</Link></li>
+                  <li className="app_element">
+                    <Link to='/calculator'
+                      className="app_element">Calculator!</Link>
+                  </li>
+                  <li className="app_element">
+                    <Link to='/todolist'
+                      className="app_element">To do List!</Link>
+                  </li>
                 </ul>
               </div>
             </Route>

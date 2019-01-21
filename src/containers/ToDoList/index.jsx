@@ -16,6 +16,7 @@ class TodoList extends Component {
 
     componentDidMount() {
         const previousTasks = JSON.parse(window.localStorage.getItem('data'));
+        console.log(this.props.location)
         if (previousTasks) {
             this.setState({
                 previousTasks
