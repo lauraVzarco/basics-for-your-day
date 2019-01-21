@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import "./style.css"
 // import PropTypes from 'prop-types';
-
-
 
 class TodoFilters extends Component {
 
@@ -11,40 +9,45 @@ class TodoFilters extends Component {
         const {
             onClick,
             numberOfItems,
-            selectedFilter
         } = this.props
 
         return (
             <Fragment>
                 <div className="todofilter_counter"> {numberOfItems} items</div>
                 <div className="todofilter_menu">
-                    <Link to='?all'
-                        className="todofilter_element">
+                    <NavLink
+                        to={{ pathname: "/todolist" }}
+                        activeClassName="isActive"
+                    >
                         <div
-                            className={selectedFilter === "all" ? "active" : "inactive"}
+                            className="inactive"
                             data-value="all"
                             onClick={onClick}>
                             All
                         </div>
-                    </Link>
-                    <Link to='?uncompleted'
-                        className="todofilter_element">
+                    </NavLink>
+                    <NavLink
+                        to={{ pathname: "/todolist", search: '?filter=uncompleted' }}
+                        activeClassName="isActive"
+                    >
                         <div
-                            className={selectedFilter === "uncompleted" ? "active" : "inactive"}
+                            className="inactive"
                             data-value="uncompleted"
                             onClick={onClick}>
                             Uncompleted
                     </div>
-                    </Link>
-                    <Link to='?completed'
-                        className="todofilter_element">
+                    </NavLink>
+                    <NavLink
+                        to={{ search: '?filter=completed' }}
+                        exact activeClassName="isActive"
+                    >
                         <div
-                            className={selectedFilter === "completed" ? "active" : "inactive"}
+                            className="inactive"
                             data-value="completed"
                             onClick={onClick}>
                             Completed
                         </div>
-                    </Link>
+                    </NavLink>
                 </div>
             </Fragment>
         )

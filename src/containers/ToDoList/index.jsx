@@ -11,7 +11,6 @@ class TodoList extends Component {
     state = {
         currentTaskDescription: '',
         previousTasks: [],
-        filtervalue: 'all'
     }
 
     componentDidMount() {
@@ -60,13 +59,6 @@ class TodoList extends Component {
 
     }
 
-    handleFilter = (e) => {
-        const clickedFilter = e.target.dataset.value
-        this.setState({
-            filtervalue: clickedFilter
-        })
-    }
-
     handleClear = () => {
         this.setState({
             currentTaskDescription: '',
@@ -77,12 +69,15 @@ class TodoList extends Component {
 
     render() {
 
+        const { location } = this.props;
+        const filterParam = new URLSearchParams(location.search);
+        console.log(location.search, 'holi')
         const filteredList = this.state.previousTasks.filter((task) => {
-            if (this.state.filtervalue === "completed") {
+            if (filterParam.get('filter') === "completed") {
                 return task.isDone === true
-            } else if (this.state.filtervalue === "uncompleted") {
+            } else if (filterParam.get('filter') === "uncompleted") {
                 return task.isDone === false
-            } else if (this.state.filtervalue === "all") {
+            } else {
                 return true
             }
         })
@@ -90,7 +85,9 @@ class TodoList extends Component {
         return (
             <Fragment>
                 <h1 className="todo_title">todos</h1>
-                <div className="todo_clearbutton"><ClearButton handleClear={this.handleClear} /> </div>
+                <div className="todo_clearbutton">
+                    <ClearButton handleClear={this.handleClear} />
+                </div>
                 <div className="todo_container">
                     <Addtodo
                         todo={this.state.currentTaskDescription}
@@ -103,7 +100,7 @@ class TodoList extends Component {
                     <TodoFilters
                         onClick={this.handleFilter}
                         numberOfItems={filteredList.length}
-                        selectedFilter={this.state.filtervalue}
+                        selectedFilter={filterParam}
                     />
                 </div>
                 <Link to='/'>Home</Link>

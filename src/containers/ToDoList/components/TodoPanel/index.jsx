@@ -12,10 +12,19 @@ class TodoPanel extends Component {
         } = this.props
 
         return (
-            <ul
-                onDoubleClick={handleDone}>
-                {list.map((task) => <li key={task.description} className={task.isDone ? 'done' : 'notdone'} data-value={task.description}  > {task.description}
-                </li>)}
+            <ul>
+                {list.map((task) => (
+                    <li
+                        key={task.description}
+                        className={task.isDone ? 'done' : 'notdone'}
+                        onDoubleClick={handleDone}
+                        data-value={task.description}
+                    >
+                        {task.description}
+                    </li>
+                )
+
+                )}
             </ul>
         )
     }

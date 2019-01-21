@@ -4,11 +4,12 @@
     user-select: none;
 }
 
-.active{
+.isActive{
     color: darkmagenta;
     font-weight: 700;
     padding: 6px;
     user-select: none;
+    text-decoration: none;
 }
 
 .todofilter_menu {
