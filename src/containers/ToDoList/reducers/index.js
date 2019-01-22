@@ -1,7 +1,6 @@
 import { todoModel } from '../models';
 
 const TodoList = (state = todoModel, action) => {
-  console.log(state.previousTasks, 'estado del previous');
   if (action.type === 'CLEAR') { return todoModel; }
   if (action.type === 'ADD_TODO') {
     return {

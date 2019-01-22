@@ -91,15 +91,15 @@ class TodoList extends Component {
       <Fragment>
         <h1 className="todo_title">todos</h1>
         <div className="todo_clearbutton">
-          <ClearButton handleClear={ this.props.clear() } />
+          <ClearButton handleClear={ this.props.clear } />
         </div>
         <div className="todo_container">
           <Addtodo
             todo={ this.props.currentTaskDescription }
-            handleTask={ this.props.writeTask() }
-            onSubmit={ this.props.submitTask() } />
+            handleTask={ this.props.writeTask }
+            onSubmit={ this.props.submitTask } />
           <TodoPanel
-            handleDone={ this.props.doTask() }
+            handleDone={ this.props.doTask }
             list={ filteredList }
           />
           <TodoFilters
