@@ -2,10 +2,11 @@ import { todoModel } from '../models';
 
 const TodoList = (state = todoModel, action) => {
   console.log(state.previousTasks, 'estado del previous');
-  if (action.type === 'CLEAR') { return state; }
+  if (action.type === 'CLEAR') { return todoModel; }
   if (action.type === 'ADD_TODO') {
     return {
-      currentTaskDescription: action.payload
+      currentTaskDescription: action.payload,
+      previousTasks: state.previousTasks
     };
   }
   if (action.type === 'SUBMIT') {
@@ -31,6 +32,7 @@ const TodoList = (state = todoModel, action) => {
     newPreviousTasks[selectedTaskIndex] = newSelectedTask;
     // cambiar el estado al array nuevo
     return {
+      currentTaskDescription: state.currentTaskDescription,
       previousTasks: newPreviousTasks
     };
   }
