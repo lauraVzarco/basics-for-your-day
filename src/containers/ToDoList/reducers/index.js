@@ -1,6 +1,7 @@
 import { todoModel } from '../models';
 
 const TodoList = (state = todoModel, action) => {
+  console.log(state.previousTasks, 'estado del previous');
   if (action.type === 'CLEAR') { return state; }
   if (action.type === 'ADD_TODO') {
     return {
@@ -9,7 +10,7 @@ const TodoList = (state = todoModel, action) => {
   }
   if (action.type === 'SUBMIT') {
     const task = {
-      description: action.payload,
+      currentTaskdescription: action.payload,
       isDone: false,
     };
     return {
@@ -32,9 +33,6 @@ const TodoList = (state = todoModel, action) => {
     return {
       previousTasks: newPreviousTasks
     };
-  }
-  if (action.type === 'FILTER') {
-    return 'ajja';
   }
   return state;
 };

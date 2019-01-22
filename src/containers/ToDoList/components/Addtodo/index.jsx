@@ -10,7 +10,7 @@ class Addtodo extends Component {
       // eslint-disable-next-line react/prop-types
       handleTask,
       // eslint-disable-next-line react/prop-types
-      onSubmit
+      onSubmit,
     } = this.props;
 
     return (
@@ -24,7 +24,7 @@ class Addtodo extends Component {
             placeholder="Whats need to be done?"
             className="addtodo_input"
             value={ todo }
-            onChange={ handleTask }
+            onChange={ ({ target }) => handleTask(target.value) }
           />
         </form>
       </Fragment>

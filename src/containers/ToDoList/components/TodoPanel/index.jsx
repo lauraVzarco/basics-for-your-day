@@ -20,7 +20,7 @@ class TodoPanel extends Component {
             key={ task.description }
             className={ task.isDone ? 'done' : 'notdone' }
             onDoubleClick={ handleDone }
-            data-value={ task.description }
+            data-value={ ({ target }) => handleDone(target.dataset.value) }
           >
             {task.description}
           </li>
