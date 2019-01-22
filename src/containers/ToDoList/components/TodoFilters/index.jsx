@@ -7,7 +7,7 @@ class TodoFilters extends Component {
 
   render() {
     // eslint-disable-next-line react/prop-types
-    const { onClick, numberOfItems, selectedFilter } = this.props;
+    const { numberOfItems, selectedFilter } = this.props;
     const unCompletedClass = (selectedFilter !== 'uncompleted') ? 'inactive' : 'isActive';
     const completedClass = (selectedFilter !== 'completed') ? 'inactive' : 'isActive';
     const allClass = (selectedFilter !== null) ? 'inactive' : 'isActive';
@@ -20,30 +20,24 @@ class TodoFilters extends Component {
             to={ { pathname: '/todolist' } }
             activeClassName={ allClass }
           >
-            <div
-              data-value="all"
-              onClick={ onClick }>
-                            All
+            <div data-value="all">
+              All
             </div>
           </NavLink>
           <NavLink
             to={ { pathname: '/todolist', search: '?filter=uncompleted' } }
             activeClassName={ unCompletedClass }
           >
-            <div
-              data-value="uncompleted"
-              onClick={ onClick }>
-                            Uncompleted
+            <div data-value="uncompleted">
+              Uncompleted
             </div>
           </NavLink>
           <NavLink
             to={ { search: '?filter=completed' } }
             exact={ true } activeClassName={ completedClass }
           >
-            <div
-              data-value="completed"
-              onClick={ onClick }>
-                            Completed
+            <div data-value="completed">
+              Completed
             </div>
           </NavLink>
         </div>
