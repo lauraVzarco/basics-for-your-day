@@ -1,0 +1,28 @@
+.inactive {
+    color: black;
+    text-decoration: none;
+    padding: 6px;
+    user-select: none;
+}
+
+.isActive{
+    color: darkmagenta;
+    font-weight: 700;
+    padding: 6px;
+    user-select: none;
+    text-decoration: none;
+}
+
+.todofilter_menu {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.todofilter_element {
+    text-decoration: none;
+}
+
+.todofilter_element:visited{
+    color:black;
+}

@@ -1,5 +1,4 @@
 .Calculator {
-    font-family: 'Orbitron', sans-serif;
     font-size: 35px;
     text-align: center;
     background-color: #cccccc;
@@ -13,10 +12,12 @@
 }
 
 .Calculator-Name {
+    font-family: 'Orbitron', sans-serif;
     margin-top: 20px;
 }
 
 .Calculator-Brand {
+    font-family: 'Orbitron', sans-serif;
     font-size: 18px;
     margin-top: 15px;
 }

@@ -1,0 +1,29 @@
+.todo_title {
+    color: darkmagenta;
+    font-weight: 100;
+    text-align: center;
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.todo_clearbutton {
+    margin: auto;
+    height: auto;
+    width: 350px;
+    padding: 12px 10px; 
+}
+
+.todo_container{
+    background-color: antiquewhite;
+    margin: auto;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    height: auto;
+    width: 350px;
+    padding: 12px 10px;
+    background: white;
+    border: 1px solid;
+    border-color: #dfdcdc #d9d6d6 #ccc;
+    border-radius: 2px;
+    box-shadow: 4px 18px 55px -1px rgba(0,0,0,0.38);}
