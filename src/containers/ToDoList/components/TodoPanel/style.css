@@ -8,3 +8,7 @@
     user-select: none;
 }
 
+.todopanel_list{
+    display: flex;
+    flex-direction: column-reverse;
+}

@@ -1,3 +1,3 @@
 export const AppModel = {
-    display: 0,
+  display: 0,
 };

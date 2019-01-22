@@ -8,7 +8,6 @@ In this project there are...
 
 A simple an basic calculator.
 
-### `npm test`
+### Todo List
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Todo list, you can watch what tasks are completed and uncompleted
