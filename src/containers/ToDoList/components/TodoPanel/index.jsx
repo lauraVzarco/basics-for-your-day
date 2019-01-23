@@ -15,12 +15,12 @@ class TodoPanel extends Component {
 
     return (
       <ul className="todopanel_list">
-        {list.map((task) => (
+        {list.map((task, index) => (
           <li
-            key={ task.description }
+            key={ index }
             className={ task.isDone ? 'done' : 'notdone' }
             onDoubleClick={ handleDone }
-            data-value={ ({ target }) => handleDone(target.dataset.value) }
+            data-value={ task.description }
           >
             {task.description}
           </li>

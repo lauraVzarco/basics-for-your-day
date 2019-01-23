@@ -24,7 +24,7 @@ class Addtodo extends Component {
             placeholder="Whats need to be done?"
             className="addtodo_input"
             value={ todo }
-            onChange={ ({ target }) => handleTask(target.value) }
+            onChange={ handleTask }
           />
         </form>
       </Fragment>

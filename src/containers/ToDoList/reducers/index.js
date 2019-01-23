@@ -10,7 +10,7 @@ const TodoList = (state = todoModel, action) => {
   }
   if (action.type === 'SUBMIT') {
     const task = {
-      currentTaskdescription: action.payload,
+      description: state.currentTaskDescription,
       isDone: false,
     };
     return {

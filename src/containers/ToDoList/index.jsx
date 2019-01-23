@@ -12,66 +12,19 @@ import {
 // import PropTypes from 'prop-types';
 
 class TodoList extends Component {
-  // state = {
-  //   currentTaskDescription: '',
-  //   previousTasks: [],
-  // }
 
-  // componentDidMount() {
-  //   const previousTasks = JSON.parse(window.localStorage.getItem('data'));
-  //   // eslint-disable-next-line react/prop-types
-  //   console.log(this.props.location);
-  //   if (previousTasks) {
-  //     this.setState({
-  //       previousTasks
-  //     });
-  //   }
-  // }
 
-  // handleTask = (e) => {
-  //   this.setState({
-  //     currentTaskDescription: e.target.value
-  //   });
-  // }
+  handleTask = e => { this.props.writeTask(e.target.value); }
 
-  // onSubmit = (e) => {
-  //   e.preventDefault();
-  //   const task = {
-  //     description: this.state.currentTaskDescription,
-  //     isDone: false,
-  //   };
-  //   this.setState(prevState => ({
-  //     currentTaskDescription: '',
-  //     previousTasks: prevState.previousTasks.concat(task)
-  //   }), () => { window.localStorage.setItem('data', JSON.stringify(this.state.previousTasks)); });
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.submitTask(e.target.value);
+  }
 
-  // }
+  handleDone = (e) => { this.props.doTask(e.target.dataset.value); }
 
-  // handleDone = (e) => {
-  //   const clickedTaskDescription = e.target.dataset.value;
-  //   // encontrar el index de la tarea seleccionada
-  //   // eslint-disable-next-line max-len
-  //   const selectedTaskIndex = this.state.previousTasks.findIndex(task => task.description === clickedTaskDescription);
-  //   // Copiar el array de previous task y el objeto del task seleccionado
-  //   const newPreviousTasks = [...this.state.previousTasks];
-  //   const newSelectedTask = { ...this.state.previousTasks[selectedTaskIndex] };
-  //   // cambiar el objeto, meterlo en el nuevo array
-  //   newSelectedTask.isDone = !newSelectedTask.isDone;
-  //   newPreviousTasks[selectedTaskIndex] = newSelectedTask;
-  //   // cambiar el estado al array nuevo
-  //   this.setState({
-  //     previousTasks: newPreviousTasks
-  //   }, () => window.localStorage.setItem('data', JSON.stringify(this.state.previousTasks)));
+  handleClear = () => { this.props.clear(); }
 
-  // }
-
-  // handleClear = () => {
-  //   this.setState({
-  //     currentTaskDescription: '',
-  //     previousTasks: []
-  //   });
-  //   localStorage.removeItem('data');
-  // }
 
   render() {
 
@@ -86,7 +39,7 @@ class TodoList extends Component {
       }
       return true;
     });
-
+    console.log(filteredList, 'filteredList');
     return (
       <Fragment>
         <h1 className="todo_title">todos</h1>
@@ -96,10 +49,10 @@ class TodoList extends Component {
         <div className="todo_container">
           <Addtodo
             todo={ this.props.currentTaskDescription }
-            handleTask={ this.props.writeTask }
-            onSubmit={ this.props.submitTask } />
+            handleTask={ this.handleTask }
+            onSubmit={ this.onSubmit } />
           <TodoPanel
-            handleDone={ this.props.doTask }
+            handleDone={ this.handleDone }
             list={ filteredList }
           />
           <TodoFilters
