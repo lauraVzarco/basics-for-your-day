@@ -1,7 +1,7 @@
-.addtodo_label {
+.addtodoLabel {
     display: none;
 }
-.addtodo_input {
+.addtodoInput {
     width: 350px;
     height: 25px;
     margin: auto;

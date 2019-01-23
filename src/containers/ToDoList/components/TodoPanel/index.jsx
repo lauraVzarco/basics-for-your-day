@@ -15,7 +15,7 @@ class TodoPanel extends Component {
     } = this.props;
 
     return (
-      <ul className="todopanel_list">
+      <ul className="todopaneList">
         {list.map((task, index) => (
           <li
             key={ index }

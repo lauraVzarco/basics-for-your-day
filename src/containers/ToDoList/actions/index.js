@@ -1,9 +1,9 @@
 import {
-  SUBMIT, IS_DONE, ADD_TODO, CLEAR, FILTER
+  TOGGLE_TODO, ADD_TODO, CLEAR, WRITE_TODO
 } from '../actionTypes';
 
 export const submitTask = (task) => ({
-  type: SUBMIT,
+  type: ADD_TODO,
   payload: task,
 });
 
@@ -13,16 +13,11 @@ export const clickClear = (list) => ({
 });
 
 export const writeTask = (task) => ({
-  type: ADD_TODO,
+  type: WRITE_TODO,
   payload: task,
 });
 
-export const doTask = (description) => ({
-  type: IS_DONE,
+export const toggleTask = (description) => ({
+  type: TOGGLE_TODO,
   payload: description
 });
-
-// export const showfilter = (list) => ({
-//   type: FILTER,
-//   payload: list,
-// });

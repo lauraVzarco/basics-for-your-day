@@ -22,11 +22,11 @@ class Addtodo extends Component {
         <form onSubmit={ onSubmit }>
           <label
             htmlFor="todo"
-            className="addtodo_label"> Todo </label>
+            className="addtodoLabel"> Todo </label>
           <input
             type="text"
             placeholder="Whats need to be done?"
-            className="addtodo_input"
+            className="addtodoInput"
             value={ todo }
             onChange={ handleTask }
           />

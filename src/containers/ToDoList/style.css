@@ -1,4 +1,4 @@
-.todo_title {
+.todoTitle {
     color: darkmagenta;
     font-weight: 100;
     text-align: center;
@@ -6,14 +6,14 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.todo_clearbutton {
+.todoClearbutton {
     margin: auto;
     height: auto;
     width: 350px;
     padding: 12px 10px; 
 }
 
-.todo_container{
+.todoContainer{
     background-color: antiquewhite;
     margin: auto;
     display: flex;

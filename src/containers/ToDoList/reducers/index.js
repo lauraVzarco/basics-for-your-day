@@ -2,13 +2,13 @@ import { todoModel } from '../models';
 
 const TodoList = (state = todoModel, action) => {
   if (action.type === 'CLEAR') { return todoModel; }
-  if (action.type === 'ADD_TODO') {
+  if (action.type === 'WRITE_TODO') {
     return {
       currentTaskDescription: action.payload,
       previousTasks: state.previousTasks
     };
   }
-  if (action.type === 'SUBMIT') {
+  if (action.type === 'ADD_TODO') {
     const task = {
       description: state.currentTaskDescription,
       isDone: false,
@@ -18,7 +18,7 @@ const TodoList = (state = todoModel, action) => {
       previousTasks: state.previousTasks.concat(task)
     };
   }
-  if (action.type === 'IS_DONE') {
+  if (action.type === 'TOGGLE_TODO') {
     const clickedTaskDescription = action.payload;
     // encontrar el index de la tarea seleccionada
     // eslint-disable-next-line max-len

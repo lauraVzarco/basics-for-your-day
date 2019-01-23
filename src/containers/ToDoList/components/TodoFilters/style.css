@@ -13,16 +13,8 @@
     text-decoration: none;
 }
 
-.todofilter_menu {
+.todofilterMenu {
     display: flex;
     flex-direction: row;
     margin: auto;
-}
-
-.todofilter_element {
-    text-decoration: none;
-}
-
-.todofilter_element:visited{
-    color:black;
 }

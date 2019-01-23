@@ -14,7 +14,7 @@ import {
 class Calculator extends Component {
   static propTypes = {
     value: PropTypes.number,
-    display: PropTypes.number,
+    display: PropTypes.string,
     clear: PropTypes.func,
     equal: PropTypes.func,
     number: PropTypes.func
@@ -39,11 +39,11 @@ class Calculator extends Component {
     return (
       <Fragment>
         <div className="Calculator">
-          <div className="Calculator-Name">🐰Piwi🐰</div>
+          <div className="CalculatorName">🐰Piwi🐰</div>
           <Display value={ this.props.display } />
           <ButtonPannel onClick={ this.handleClick }
           />
-          <div className="Calculator-Brand" >Laura Vargas</div>
+          <div className="CalculatorBrand" >Laura Vargas</div>
         </div><Link to="/">Home</Link>
       </Fragment>
     );

@@ -18,8 +18,8 @@ class TodoFilters extends Component {
 
     return (
       <Fragment>
-        <div className="todofilter_counter"> {numberOfItems} items</div>
-        <div className="todofilter_menu">
+        <div className="todofilterCounter"> {numberOfItems} items</div>
+        <div className="todofilterMenu">
           <NavLink
             to={ { pathname: '/todolist' } }
             activeClassName={ allClass }

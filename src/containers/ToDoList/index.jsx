@@ -8,14 +8,14 @@ import TodoFilters from './components/TodoFilters';
 import ClearButton from './components/ClearButton';
 import './style.css';
 import {
-  submitTask, clickClear, writeTask, doTask
+  submitTask, clickClear, writeTask, toggleTask
 } from './actions';
 
 class TodoList extends Component {
   static propTypes = {
     writeTask: PropTypes.func,
     submitTask: PropTypes.func,
-    doTask: PropTypes.func,
+    toggleTask: PropTypes.func,
     clear: PropTypes.func,
     location: PropTypes.object,
     previousTasks: PropTypes.array,
@@ -29,7 +29,7 @@ class TodoList extends Component {
     this.props.submitTask(e.target.value);
   }
 
-  handleDone = (e) => { this.props.doTask(e.target.dataset.value); }
+  handleDone = (e) => { this.props.toggleTask(e.target.dataset.value); }
 
   handleClear = () => { this.props.clear(); }
 
@@ -49,11 +49,11 @@ class TodoList extends Component {
     console.log(filteredList, 'filteredList');
     return (
       <Fragment>
-        <h1 className="todo_title">todos</h1>
-        <div className="todo_clearbutton">
+        <h1 className="todoTitle">todos</h1>
+        <div className="todoClearbutton">
           <ClearButton handleClear={ this.props.clear } />
         </div>
-        <div className="todo_container">
+        <div className="todoContainer">
           <Addtodo
             todo={ this.props.currentTaskDescription }
             handleTask={ this.handleTask }
@@ -79,7 +79,7 @@ const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(clickClear()),
   submitTask: (value) => dispatch(submitTask(value)),
   writeTask: (value) => dispatch(writeTask(value)),
-  doTask: (value) => dispatch(doTask(value))
+  toggleTask: (value) => dispatch(toggleTask(value))
 });
 
 const mapStateToProps = (state) => ({

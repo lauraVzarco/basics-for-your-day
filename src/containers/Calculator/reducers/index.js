@@ -49,31 +49,30 @@ const evaldata = (jsExpression) => {
       const selectedOperator = symbolToFnMap[operation.operator];
       // eslint-disable-next-line max-len
       return String(selectedOperator(Number(operation.firstNumber), Number(operation.secondNumber)));
-    } 
+    }
     return operation.firstNumber;
-        
+
   } catch (error) {
     return 'oh no';
   }
 };
 
 const Calculator = (state = AppModel, action) => {
-  // eslint-disable-next-line indent
-    if (action.type === 'CLEAR') { return AppModel; }
+  if (action.type === 'CLEAR') { return AppModel; }
   if (action.type === 'EQUAL') {
     return {
       display: evaldata(state.display)
-    }; 
+    };
   } if (action.type === 'BUTTON_NUMBER') {
     if (state.display === 0) {
       return {
         display: action.payload,
       };
-    } 
+    }
     return {
       display: state.display + action.payload
     };
-        
+
   } if (action.type === 'OPERATOR') {
     return {
       display: evaldata(state.display) + action.payload
