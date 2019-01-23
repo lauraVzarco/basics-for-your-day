@@ -1,15 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import './style.css';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class Addtodo extends Component {
+
+  static propTypes = {
+    todo: PropTypes.string,
+    handleTask: PropTypes.func,
+    onSubmit: PropTypes.func
+  }
+
   render() {
     const {
-      // eslint-disable-next-line react/prop-types
       todo,
-      // eslint-disable-next-line react/prop-types
       handleTask,
-      // eslint-disable-next-line react/prop-types
       onSubmit,
     } = this.props;
 

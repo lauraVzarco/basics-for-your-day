@@ -1,12 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import './style.css';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class TodoFilters extends Component {
 
+  static propTypes = {
+    numberOfItems: PropTypes.number,
+    selectedFilter: PropTypes.string
+  }
+
   render() {
-    // eslint-disable-next-line react/prop-types
     const { numberOfItems, selectedFilter } = this.props;
     const unCompletedClass = (selectedFilter !== 'uncompleted') ? 'inactive' : 'isActive';
     const completedClass = (selectedFilter !== 'completed') ? 'inactive' : 'isActive';

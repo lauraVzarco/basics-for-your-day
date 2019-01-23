@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Addtodo from './components/Addtodo';
 import TodoPanel from './components/TodoPanel';
 import TodoFilters from './components/TodoFilters';
@@ -9,10 +10,17 @@ import './style.css';
 import {
   submitTask, clickClear, writeTask, doTask
 } from './actions';
-// import PropTypes from 'prop-types';
 
 class TodoList extends Component {
-
+  static propTypes = {
+    writeTask: PropTypes.func,
+    submitTask: PropTypes.func,
+    doTask: PropTypes.func,
+    clear: PropTypes.func,
+    location: PropTypes.object,
+    previousTasks: PropTypes.array,
+    currentTaskDescription: PropTypes.string
+  }
 
   handleTask = e => { this.props.writeTask(e.target.value); }
 
@@ -28,7 +36,6 @@ class TodoList extends Component {
 
   render() {
 
-    // eslint-disable-next-line react/prop-types
     const { location } = this.props;
     const filterParam = new URLSearchParams(location.search).get('filter');
     const filteredList = this.props.previousTasks.filter((task) => {

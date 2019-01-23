@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './style.css';
-
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class TodoPanel extends Component {
+  static propTypes = {
+    list: PropTypes.array,
+    handleDone: PropTypes.func,
+  }
 
   render() {
     const {
-      // eslint-disable-next-line react/prop-types
       list,
-      // eslint-disable-next-line react/prop-types
       handleDone,
     } = this.props;
 
