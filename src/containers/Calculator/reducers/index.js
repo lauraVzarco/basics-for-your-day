@@ -31,8 +31,9 @@ const getOperation = (jsExpression) => {
   };
 };
 
-// eslint-disable-next-line max-len
-// Buscas el tipo de operador y realizas la función que quieres. Suma, resta, multiplicación, división...
+// Buscas el tipo de operador y realizas la función que quieres. 
+// Suma, resta, multiplicación, división...
+
 const symbolToFnMap = {
   '+': (a, b) => a + b,
   '-': (a, b) => a - b,
