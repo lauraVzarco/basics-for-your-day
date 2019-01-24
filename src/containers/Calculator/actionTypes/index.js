@@ -1,4 +1,4 @@
-export const BUTTON_NUMBER = 'BUTTON_NUMBER';
+export const ADD_NUMBER = 'ADD_NUMBER';
 export const CLEAR = 'CLEAR';
-export const EQUAL = 'EQUAL';
-export const OPERATOR = 'OPERATOR';
+export const PRESS_EQUAL = 'PRESS_EQUAL';
+export const SELECT_OPERATOR = 'SELECT_OPERATOR';

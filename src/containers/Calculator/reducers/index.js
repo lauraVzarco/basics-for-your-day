@@ -1,97 +1,79 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-mixed-operators */
 import { AppModel } from '../models';
 
 // Para operar
 
-// Busco que la tecla seleccionada contenga un digito
-// const isDigitString = (char) => '0123456789'.includes(char);
-
-// creo tres expresiones, el primer número, el operador y el segundo número. 
-// Si el valor pulsado es un número y no hay un operador, lo meto en el first number. 
-// Al pulsar el operador, actualiza operator, y si meto otro número y hay un operador, second number
-// const getOperation = (jsExpression) => {
-//   let firstNumber = '';
-//   let operator = '';
-//   let secondNumber = '';
-
-// eslint-disable-next-line no-plusplus
-//   for (let index = 0; index < jsExpression.length; index++) {
-//     const value = jsExpression[index];
-//     if (isDigitString(value) && !operator) {
-//       firstNumber += value;
-//     } else if (!isDigitString(value)) {
-//       operator = value;
-//     } else if (isDigitString(value) && operator) {
-//       secondNumber += value;
-//     }
-//   }
-//   return {
-//     firstNumber,
-//     operator,
-//     secondNumber
-//   };
-// };
-
-// Buscas el tipo de operador y realizas la función que quieres. 
-// Suma, resta, multiplicación, división...
-
-// const symbolToFnMap = {
-//   '+': (a, b) => a + b,
-//   '-': (a, b) => a - b,
-//   '*': (a, b) => a * b,
-//   '/': (a, b) => a / b
-// };
-
-// eslint-disable-next-line max-len
-// realizas la operación, llamas a la funcion get number y si hay un operador, llama a la que opera. Si no, se toma como firstnumber (Para cuando has dado igual y quieres continuar)
-// const evaldata = (jsExpression) => {
-//   try {
-//     const operation = getOperation(jsExpression);
-//     if (operation.operator) {
-//       const selectedOperator = symbolToFnMap[operation.operator];
-//       // eslint-disable-next-line max-len
-//       return String(selectedOperator(Number(operation.firstNumber), Number(operation.secondNumber)));
-//     }
-//     return operation.firstNumber;
-
-//   } catch (error) {
-//     return 'oh no';
-//   }
-// };
+const symbolToOperate = {
+  '+': (a, b) => a + b,
+  '-': (a, b) => a - b,
+  '*': (a, b) => a * b,
+  '/': (a, b) => a / b
+};
 
 const Calculator = (state = AppModel, action) => {
   if (action.type === 'CLEAR') { return AppModel; }
-  if (action.type === 'BUTTON_NUMBER') {
+  if (action.type === 'ADD_NUMBER') {
     if (state.display === 0 && state.operator === '') {
       return {
         firstNumber: action.payload,
+        secondNumber: 0,
+        operator: '',
+        result: 0,
         display: action.payload,
       };
     } if (state.display !== 0 && state.operator === '') {
       return {
         firstNumber: state.firstNumber + action.payload,
+        secondNumber: 0,
+        operator: '',
+        result: 0,
         display: state.display + action.payload
       };
     }
     if (state.operator !== '' && state.secondNumber === 0) {
       return {
+        firstNumber: state.firstNumber,
         secondNumber: action.payload,
-        display: state.display + state.secondNumber
+        operator: state.operator,
+        result: 0,
+        display: state.display + action.payload
       };
     } if (state.operator !== '' && state.secondNumber !== 0) {
       return {
+        firstNumber: state.firstNumber,
         secondNumber: state.secondNumber + action.payload,
-        display: state.display + action.payload
+        operator: state.operator,
+        result: 0,
+        display: state.display + state.secondNumber
       };
     }
-  } if (action.type === 'OPERATOR') {
+  } if (action.type === 'SELECT_OPERATOR') {
     return {
-      display: evaldata(state.display) + action.payload
+      firstNumber: state.firstNumber,
+      secondNumber: 0,
+      operator: action.payload,
+      result: 0,
+      display: state.display + action.payload
     };
   }
-  if (action.type === 'EQUAL') {
-    return {
-      display: evaldata(state.display)
-    };
+  if (action.type === 'PRESS_EQUAL') {
+    try {
+      if (state.operator) {
+        const selectedOperator = symbolToOperate[state.operator];
+        const resultOperation = String(selectedOperator(Number(state.firstNumber),
+          Number(state.secondNumber)));
+        return {
+          firstNumber: resultOperation,
+          secondNumber: 0,
+          operator: '',
+          result: resultOperation,
+          display: resultOperation
+        };
+      }
+    } catch (error) {
+      return 'oh no!';
+    }
   }
   return state;
 };
