@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import './Calculator.css';
@@ -17,7 +16,10 @@ class Calculator extends Component {
     display: PropTypes.string,
     clear: PropTypes.func,
     equal: PropTypes.func,
-    number: PropTypes.func
+    number: PropTypes.func,
+    firstNumber: PropTypes.string,
+    secondNumber: PropTypes.string,
+    result: PropTypes.string
   }
 
   // Para juntar utilidades de botones
@@ -34,13 +36,13 @@ class Calculator extends Component {
     }
   }
 
-
   render() {
     return (
       <Fragment>
         <div className="Calculator">
           <div className="CalculatorName">🐰Piwi🐰</div>
-          <Display value={ this.props.display } />
+          <Display value={ this.props.display }
+            display={ this.props.result || this.props.secondNumber || this.props.firstNumber } />
           <ButtonPannel onClick={ this.handleClick }
           />
           <div className="CalculatorBrand" >Laura Vargas</div>
@@ -60,7 +62,9 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = (state) => ({
   display: state.Calculator.display,
-
+  firstNumber: state.Calculator.firstNumber,
+  secondNumber: state.Calculator.secondNumber,
+  result: state.Calculator.result
 });
 
 

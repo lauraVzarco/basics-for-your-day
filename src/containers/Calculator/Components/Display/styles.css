@@ -1,12 +1,16 @@
 .Display {
-    font-size: 30px;
+    font-size: 28px;
     background:#6B9C83;
     border:solid;
     border-width:1px;
     border-color:#888;
     font-family: 'Orbitron', sans-serif;
-    margin: 7% -3% 7% 5%;
+    margin: 7% -3% 4% 5%;
     text-align:right;
     border-radius:10px;
     width:260px
+}
+
+.littleDisplay {
+    font-size: 15px;
 }
