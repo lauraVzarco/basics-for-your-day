@@ -66,13 +66,14 @@ const Calculator = (state = AppModel, action) => {
   } if (action.type === 'BUTTON_NUMBER') {
     if (state.display === 0) {
       return {
+        firstNumber: Number(action.payload),
         display: action.payload,
       };
     }
     return {
+      firstNumber: state.firstNumber + Number(action.payload),
       display: state.display + action.payload
     };
-
   } if (action.type === 'OPERATOR') {
     return {
       display: evaldata(state.display) + action.payload
