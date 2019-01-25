@@ -44,6 +44,7 @@ class Calculator extends Component {
         <div className="Calculator">
           <div className="CalculatorName">🐰Piwi🐰</div>
           <Display value={ this.props.display }
+            // eslint-disable-next-line max-len
             display={ this.props.result || this.props.secondOperationNumber || this.props.firstOperationNumber } />
           <ButtonPannel onClick={ this.handleClick }
           />
