@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './style.css';
 import PropTypes from 'prop-types';
 
-class TodoFilters extends Component {
+class FiltersPanel extends Component {
 
   static propTypes = {
     numberOfItems: PropTypes.number,
@@ -18,8 +18,8 @@ class TodoFilters extends Component {
 
     return (
       <Fragment>
-        <div className="todofilterCounter"> {numberOfItems} items</div>
-        <div className="todofilterMenu">
+        <div className="filterPanelCounter"> {numberOfItems} items</div>
+        <div className="filterPanelMenu">
           <NavLink
             to={ { pathname: '/todolist' } }
             activeClassName={ allClass }
@@ -50,4 +50,4 @@ class TodoFilters extends Component {
   }
 }
 
-export default TodoFilters;
+export default FiltersPanel;

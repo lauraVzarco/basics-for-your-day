@@ -7,7 +7,7 @@ import App from './containers/App.jsx';
 import * as serviceWorker from './serviceWorker';
 
 
-import store from './store/store.js';
+import store from './store';
 
 ReactDOM.render(
   <HashRouter>

@@ -9,24 +9,24 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <main className="Main">
+        <main className="main">
           <Switch>
             <Route exact={ true } path="/">
-              <div className="app_container">
-                <h1 className="app_title">
+              <div className="appContainer">
+                <h1 className="appTitle">
                   Hi! This is Basics for your day.
                 </h1 >
-                <h2 className="app_subtitle">
+                <h2 className="appSubtitle">
                   What do you want?
                 </h2>
-                <ul className="app_list">
-                  <li className="app_element">
+                <ul className="appList">
+                  <li className="appElement">
                     <Link to="/calculator"
-                      className="app_element">Calculator!</Link>
+                      className="appElement">Calculator!</Link>
                   </li>
-                  <li className="app_element">
+                  <li className="appElement">
                     <Link to="/todolist"
-                      className="app_element">To do List!</Link>
+                      className="appElement">To do List!</Link>
                   </li>
                 </ul>
               </div>

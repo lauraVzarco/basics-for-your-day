@@ -13,7 +13,7 @@
     text-decoration: none;
 }
 
-.todofilterMenu {
+.filterPanelMenu {
     display: flex;
     flex-direction: row;
     margin: auto;

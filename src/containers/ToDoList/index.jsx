@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Addtodo from './components/Addtodo';
-import TodoPanel from './components/TodoPanel';
-import TodoFilters from './components/TodoFilters';
+import InputTodo from './components/InputTodo';
+import TodoListPanel from './components/TodoListPanel';
+import FilterPanel from './components/FilterPanel';
 import ClearButton from './components/ClearButton';
 import './style.css';
 import {
@@ -18,15 +18,20 @@ class TodoList extends Component {
     toggleTask: PropTypes.func,
     clear: PropTypes.func,
     location: PropTypes.object,
-    previousTasks: PropTypes.array,
-    currentTaskDescription: PropTypes.string
+    listOfTasks: PropTypes.array,
+    inputTask: PropTypes.string
   }
 
-  handleTask = e => { this.props.writeTask(e.target.value); }
+  state = {
+    task: ''
+  }
+
+  handleTask = e => { this.setState({ task: e.target.value }); }
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.submitTask(e.target.value);
+    this.props.submitTask(this.state.task);
+    this.setState({ task: '' });
   }
 
   handleDone = (e) => { this.props.toggleTask(e.target.dataset.value); }
@@ -38,7 +43,7 @@ class TodoList extends Component {
 
     const { location } = this.props;
     const filterParam = new URLSearchParams(location.search).get('filter');
-    const filteredList = this.props.previousTasks.filter((task) => {
+    const filteredList = this.props.listOfTasks.filter((task) => {
       if (filterParam === 'completed') {
         return task.isDone === true;
       } if (filterParam === 'uncompleted') {
@@ -54,15 +59,15 @@ class TodoList extends Component {
           <ClearButton handleClear={ this.props.clear } />
         </div>
         <div className="todoContainer">
-          <Addtodo
-            todo={ this.props.currentTaskDescription }
+          <InputTodo
+            todo={ this.state.task }
             handleTask={ this.handleTask }
             onSubmit={ this.onSubmit } />
-          <TodoPanel
+          <TodoListPanel
             handleDone={ this.handleDone }
             list={ filteredList }
           />
-          <TodoFilters
+          <FilterPanel
             onClick={ this.handleFilter }
             numberOfItems={ filteredList.length }
             selectedFilter={ filterParam }
@@ -83,8 +88,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = (state) => ({
-  currentTaskDescription: state.Todo.currentTaskDescription,
-  previousTasks: state.Todo.previousTasks
+  inputTask: state.Todo.inputTask,
+  listOfTasks: state.Todo.listOfTasks
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

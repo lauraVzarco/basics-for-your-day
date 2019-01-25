@@ -2,18 +2,18 @@ body {
     background-color: plum;
 }
 
-.app_title {
+.appTitle {
     text-align: center;
     font-size: 40px;
     
 }
 
-.app_subtitle {
+.appSubtitle {
     text-align: center;
     font-size: 30px;   
 }
 
-.app_list {
+.appList {
     display: flex;
     text-align: center;
     justify-content: space-evenly;
@@ -23,8 +23,9 @@ body {
     padding: 0px;
 }
 
-.app_element{
+.appElement{
     font-size: 25px;
     padding: 10px;
     text-decoration: none;
+    color: black;
 }

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
 
-class Addtodo extends Component {
+class InputTodo extends Component {
 
   static propTypes = {
     todo: PropTypes.string,
@@ -22,11 +22,11 @@ class Addtodo extends Component {
         <form onSubmit={ onSubmit }>
           <label
             htmlFor="todo"
-            className="addtodoLabel"> Todo </label>
+            className="inputTodoLabel"> Todo </label>
           <input
             type="text"
             placeholder="Whats need to be done?"
-            className="addtodoInput"
+            className="inputTodoInput"
             value={ todo }
             onChange={ handleTask }
           />
@@ -36,4 +36,4 @@ class Addtodo extends Component {
   }
 }
 
-export default Addtodo;
+export default InputTodo;
