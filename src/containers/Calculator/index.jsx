@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ButtonPannel from './Components/ButtonPannel';
 import Display from './Components/Display';
 import {
-  clickClear, clickEqual, clickNumber, clickOperator
+  pressClear, pressEqual, pressNumber, clickOperator
 } from './actions';
 
 const numberSelected = new RegExp(/([0-9]+)/g);
@@ -43,10 +43,10 @@ class Calculator extends Component {
       <Fragment>
         <div className="Calculator">
           <div className="CalculatorName">🐰Piwi🐰</div>
-          <Display value={ this.props.display }
+          <Display value={this.props.display}
             // eslint-disable-next-line max-len
-            display={ this.props.result || this.props.secondOperationNumber || this.props.firstOperationNumber } />
-          <ButtonPannel onClick={ this.handleClick }
+            display={this.props.result || this.props.secondOperationNumber || this.props.firstOperationNumber} />
+          <ButtonPannel onClick={this.handleClick}
           />
           <div className="CalculatorBrand" >Laura Vargas</div>
         </div><Link to="/">Home</Link>
@@ -57,9 +57,9 @@ class Calculator extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  clear: () => dispatch(clickClear()),
-  equal: () => dispatch(clickEqual()),
-  number: (value) => dispatch(clickNumber(value)),
+  clear: () => dispatch(pressClear()),
+  equal: () => dispatch(pressEqual()),
+  number: (value) => dispatch(pressNumber(value)),
   operator: (value) => dispatch(clickOperator(value))
 });
 

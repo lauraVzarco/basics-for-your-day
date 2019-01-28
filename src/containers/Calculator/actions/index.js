@@ -1,18 +1,18 @@
 import {
-  ADD_NUMBER, CLEAR, PRESS_EQUAL, SELECT_OPERATOR
+  PRESS_NUMBER, PRESS_CLEAR, PRESS_EQUAL, SELECT_OPERATOR
 } from '../actionTypes';
 
-export const clickNumber = (value) => ({
-  type: ADD_NUMBER,
+export const pressNumber = (value) => ({
+  type: PRESS_NUMBER,
   payload: value,
 });
 
-export const clickClear = (value) => ({
-  type: CLEAR,
+export const pressClear = (value) => ({
+  type: PRESS_CLEAR,
   payload: value,
 });
 
-export const clickEqual = (value) => ({
+export const pressEqual = (value) => ({
   type: PRESS_EQUAL,
   payload: value,
 });

@@ -8,7 +8,7 @@ import FilterPanel from './components/FilterPanel';
 import ClearButton from './components/ClearButton';
 import './style.css';
 import {
-  submitTask, clickClear, writeTask, toggleTask
+  submitTask, pressClear, toggleTask
 } from './actions';
 
 class TodoList extends Component {
@@ -56,21 +56,21 @@ class TodoList extends Component {
       <Fragment>
         <h1 className="todoTitle">todos</h1>
         <div className="todoClearbutton">
-          <ClearButton handleClear={ this.props.clear } />
+          <ClearButton handleClear={this.props.clear} />
         </div>
         <div className="todoContainer">
           <InputTodo
-            todo={ this.state.task }
-            handleTask={ this.handleTask }
-            onSubmit={ this.onSubmit } />
+            todo={this.state.task}
+            handleTask={this.handleTask}
+            onSubmit={this.onSubmit} />
           <TodoListPanel
-            handleDone={ this.handleDone }
-            list={ filteredList }
+            handleDone={this.handleDone}
+            list={filteredList}
           />
           <FilterPanel
-            onClick={ this.handleFilter }
-            numberOfItems={ filteredList.length }
-            selectedFilter={ filterParam }
+            onClick={this.handleFilter}
+            numberOfItems={filteredList.length}
+            selectedFilter={filterParam}
           />
         </div>
         <Link to="/">Home</Link>
@@ -81,9 +81,8 @@ class TodoList extends Component {
 
 
 const mapDispatchToProps = dispatch => ({
-  clear: () => dispatch(clickClear()),
+  clear: () => dispatch(pressClear()),
   submitTask: (value) => dispatch(submitTask(value)),
-  writeTask: (value) => dispatch(writeTask(value)),
   toggleTask: (value) => dispatch(toggleTask(value))
 });
 

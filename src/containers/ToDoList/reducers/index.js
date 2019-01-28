@@ -1,7 +1,11 @@
 import { todoModel } from '../models';
 
 const TodoList = (state = todoModel, action) => {
-  if (action.type === 'CLEAR') { return todoModel; }
+  if (action.type === 'CLEAR') {
+    return {
+      listOfTasks: []
+    };
+  }
   if (action.type === 'ADD_TODO') {
     const task = {
       description: action.payload,

@@ -12,8 +12,16 @@ const symbolToOperate = {
 };
 
 const Calculator = (state = calculatorModel, action) => {
-  if (action.type === 'CLEAR') { return calculatorModel; }
-  if (action.type === 'ADD_NUMBER') {
+  if (action.type === 'PRESS_CLEAR') {
+    return {
+      firstOperationNumber: 0,
+      secondOperationNumber: 0,
+      operator: '',
+      result: 0,
+      display: 0,
+    };
+  }
+  if (action.type === 'PRESS_NUMBER') {
     if (state.display === 0 && state.operator === '') {
       return {
         firstOperationNumber: action.payload,
