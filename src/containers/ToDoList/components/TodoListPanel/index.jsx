@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
 
-class TodoPanel extends Component {
+class TodoListPanel extends Component {
   static propTypes = {
     list: PropTypes.array,
     handleDone: PropTypes.func,
@@ -15,7 +15,7 @@ class TodoPanel extends Component {
     } = this.props;
 
     return (
-      <ul className="todopaneList">
+      <ul className="TodoListList">
         {list.map((task, index) => (
           <li
             key={ index }
@@ -32,4 +32,4 @@ class TodoPanel extends Component {
   }
 }
 
-export default TodoPanel;
+export default TodoListPanel;

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import './Calculator.css';
@@ -7,9 +6,10 @@ import { connect } from 'react-redux';
 import ButtonPannel from './Components/ButtonPannel';
 import Display from './Components/Display';
 import {
-  clickClear, clickEqual, clickNumber, clickOperator
+  pressClear, pressEqual, pressNumber, clickOperator
 } from './actions';
 
+const numberSelected = new RegExp(/([0-9]+)/g);
 
 class Calculator extends Component {
   static propTypes = {
@@ -17,31 +17,36 @@ class Calculator extends Component {
     display: PropTypes.string,
     clear: PropTypes.func,
     equal: PropTypes.func,
-    number: PropTypes.func
+    number: PropTypes.func,
+    operator: PropTypes.func,
+    firstOperationNumber: PropTypes.string,
+    secondOperationNumber: PropTypes.string,
+    result: PropTypes.string
   }
 
   // Para juntar utilidades de botones
-
   handleClick = (value) => {
     if (value === 'C') {
       this.props.clear();
     } else if (value === '=') {
       this.props.equal();
-    } else if ('0123456789'.includes(value)) {
+      // TODO change to regex expresion regulá
+    } else if (value.match(numberSelected)) {
       this.props.number(value);
     } else {
       this.props.operator(value);
     }
   }
 
-
   render() {
     return (
       <Fragment>
         <div className="Calculator">
           <div className="CalculatorName">🐰Piwi🐰</div>
-          <Display value={ this.props.display } />
-          <ButtonPannel onClick={ this.handleClick }
+          <Display value={this.props.display}
+            // eslint-disable-next-line max-len
+            display={this.props.result || this.props.secondOperationNumber || this.props.firstOperationNumber} />
+          <ButtonPannel onClick={this.handleClick}
           />
           <div className="CalculatorBrand" >Laura Vargas</div>
         </div><Link to="/">Home</Link>
@@ -52,15 +57,17 @@ class Calculator extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  clear: () => dispatch(clickClear()),
-  equal: () => dispatch(clickEqual()),
-  number: (value) => dispatch(clickNumber(value)),
+  clear: () => dispatch(pressClear()),
+  equal: () => dispatch(pressEqual()),
+  number: (value) => dispatch(pressNumber(value)),
   operator: (value) => dispatch(clickOperator(value))
 });
 
 const mapStateToProps = (state) => ({
   display: state.Calculator.display,
-
+  firstOperationNumber: state.Calculator.firstOperationNumber,
+  secondOperationNumber: state.Calculator.secondOperationNumber,
+  result: state.Calculator.result
 });
 
 

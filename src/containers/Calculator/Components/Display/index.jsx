@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const propTypes = {
-  value: PropTypes.string
-};
-const defaultProps = {
-  value: ''
-};
+class Display extends Component {
+  static propTypes = {
+    value: PropTypes.number,
+    display: PropTypes.string
+  }
 
-const Display = (props) => (
-  <div className="Display">
-    < div className="Display-content" >
-      {props.value}
-    </div >
-  </div>
-
-);
-
-Display.propTypes = propTypes;
-Display.defaultProps = defaultProps;
+  render() {
+    return (
+      <Fragment>
+        <div className="Display">
+          <div className="littleDisplay">
+            {this.props.value}
+          </div>
+          < div className="DisplayContent" >
+            {this.props.display}
+          </div >
+        </div>
+      </Fragment>
+    );
+  }
+}
 
 export default Display;

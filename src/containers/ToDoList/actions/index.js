@@ -1,5 +1,5 @@
 import {
-  TOGGLE_TODO, ADD_TODO, CLEAR, WRITE_TODO
+  TOGGLE_TODO, ADD_TODO, CLEAR
 } from '../actionTypes';
 
 export const submitTask = (task) => ({
@@ -7,14 +7,9 @@ export const submitTask = (task) => ({
   payload: task,
 });
 
-export const clickClear = (list) => ({
+export const pressClear = (list) => ({
   type: CLEAR,
   payload: list,
-});
-
-export const writeTask = (task) => ({
-  type: WRITE_TODO,
-  payload: task,
 });
 
 export const toggleTask = (description) => ({

@@ -1,4 +1,3 @@
 export const todoModel = {
-  currentTaskDescription: '',
-  previousTasks: []
+  listOfTasks: []
 };
