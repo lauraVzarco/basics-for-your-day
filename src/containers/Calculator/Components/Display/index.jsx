@@ -5,7 +5,7 @@ import './styles.css';
 class Display extends Component {
   static propTypes = {
     value: PropTypes.number,
-    display: PropTypes.string
+    display: PropTypes.number
   }
 
   render() {

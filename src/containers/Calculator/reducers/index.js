@@ -1,6 +1,4 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable no-mixed-operators */
-import { calculatorModel } from '../models';
+import { initialStateCalculator } from '../models';
 
 // Para operar
 
@@ -11,59 +9,39 @@ const symbolToOperate = {
   '/': (a, b) => a / b
 };
 
-const Calculator = (state = calculatorModel, action) => {
+const Calculator = (state = initialStateCalculator, action) => {
   if (action.type === 'PRESS_CLEAR') {
-    return {
-      firstOperationNumber: 0,
-      secondOperationNumber: 0,
-      operator: '',
-      result: 0,
-      display: 0,
-    };
+    const clearCalculator = state.clear();
+    return clearCalculator;
   }
   if (action.type === 'PRESS_NUMBER') {
     if (state.display === 0 && state.operator === '') {
-      return {
-        firstOperationNumber: action.payload,
-        secondOperationNumber: 0,
-        operator: '',
-        result: 0,
-        display: action.payload,
-      };
+      return state
+        .set('firstOperationNumber', action.payload)
+        .set('display', action.payload);
     } if (state.display !== 0 && state.operator === '') {
-      return {
-        firstOperationNumber: state.firstOperationNumber + action.payload,
-        secondOperationNumber: 0,
-        operator: '',
-        result: 0,
-        display: state.display + action.payload
-      };
+      return state
+        .set('firstOperationNumber', state.firstOperationNumber + action.payload)
+        .set('display', state.display + action.payload);
     }
     if (state.operator !== '' && state.secondOperationNumber === 0) {
-      return {
-        firstOperationNumber: state.firstOperationNumber,
-        secondOperationNumber: action.payload,
-        operator: state.operator,
-        result: 0,
-        display: state.display + action.payload
-      };
+      return state
+        .set('firstOperationNumber', state.firstOperationNumber)
+        .set('secondOperationNumber', action.payload)
+        .set('operator', state.operator)
+        .set('display', state.display + action.payload);
     } if (state.operator !== '' && state.secondOperationNumber !== 0) {
-      return {
-        firstOperationNumber: state.firstOperationNumber,
-        secondOperationNumber: state.secondOperationNumber + action.payload,
-        operator: state.operator,
-        result: 0,
-        display: state.display + state.secondOperationNumber
-      };
+      return state
+        .set('firstOperationNumber', state.firstOperationNumber)
+        .set('secondOperationNumber', state.secondOperationNumber + action.payload)
+        .set('operator', state.operator)
+        .set('display', state.display + state.secondOperationNumber);
     }
   } if (action.type === 'SELECT_OPERATOR') {
-    return {
-      firstOperationNumber: state.firstOperationNumber,
-      secondOperationNumber: 0,
-      operator: action.payload,
-      result: 0,
-      display: state.display + action.payload
-    };
+    return state
+      .set('firstOperationNumber', state.firstOperationNumber)
+      .set('operator', action.payload)
+      .set('display', state.display + action.payload);
   }
   if (action.type === 'PRESS_EQUAL') {
     try {
@@ -71,13 +49,10 @@ const Calculator = (state = calculatorModel, action) => {
         const selectedOperator = symbolToOperate[state.operator];
         const resultOperation = String(selectedOperator(Number(state.firstOperationNumber),
           Number(state.secondOperationNumber)));
-        return {
-          firstOperationNumber: resultOperation,
-          secondOperationNumber: 0,
-          operator: '',
-          result: resultOperation,
-          display: resultOperation
-        };
+        return state
+          .set('firstOperationNumber', resultOperation)
+          .set('result', resultOperation)
+          .set('display', resultOperation);
       }
     } catch (error) {
       return 'oh no!';
