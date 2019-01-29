@@ -10,6 +10,7 @@ import './style.css';
 import {
   submitTask, pressClear, toggleTask
 } from './actions';
+// import { todo } from './models/todo.js';
 
 class TodoList extends Component {
   static propTypes = {
@@ -56,21 +57,21 @@ class TodoList extends Component {
       <Fragment>
         <h1 className="todoTitle">todos</h1>
         <div className="todoClearbutton">
-          <ClearButton handleClear={this.props.clear} />
+          <ClearButton handleClear={ this.props.clear } />
         </div>
         <div className="todoContainer">
           <InputTodo
-            todo={this.state.task}
-            handleTask={this.handleTask}
-            onSubmit={this.onSubmit} />
+            todo={ this.state.task }
+            handleTask={ this.handleTask }
+            onSubmit={ this.onSubmit } />
           <TodoListPanel
-            handleDone={this.handleDone}
-            list={filteredList}
+            handleDone={ this.handleDone }
+            list={ filteredList }
           />
           <FilterPanel
-            onClick={this.handleFilter}
-            numberOfItems={filteredList.length}
-            selectedFilter={filterParam}
+            onClick={ this.handleFilter }
+            numberOfItems={ filteredList.length }
+            selectedFilter={ filterParam }
           />
         </div>
         <Link to="/">Home</Link>

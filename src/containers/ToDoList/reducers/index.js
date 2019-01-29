@@ -1,10 +1,8 @@
-import { todoModel } from '../models';
+import { initialTodoModel } from '../models';
 
-const TodoList = (state = todoModel, action) => {
+const TodoList = (state = initialTodoModel, action) => {
   if (action.type === 'CLEAR') {
-    return {
-      listOfTasks: []
-    };
+    return state.clear();
   }
   if (action.type === 'ADD_TODO') {
     const task = {

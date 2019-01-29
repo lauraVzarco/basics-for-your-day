@@ -1,7 +1,7 @@
 import { initialStateCalculator } from '../containers/Calculator/models';
-import { todoModel } from '../containers/TodoList/models/index.js';
+import { initialTodoModel } from '../containers/TodoList/models/index.js';
 
 export const initialState = {
   Calculator: initialStateCalculator,
-  Todo: todoModel
+  Todo: initialTodoModel
 };
