@@ -45,12 +45,13 @@ const Calculator = (state = initialStateCalculator, action) => {
   }
   if (action.type === 'PRESS_EQUAL') {
     try {
-      if (state.operator) {
+      if (state.operator && state.secondOperationNumber) {
         const selectedOperator = symbolToOperate[state.operator];
         const resultOperation = String(selectedOperator(Number(state.firstOperationNumber),
           Number(state.secondOperationNumber)));
         return state
           .set('firstOperationNumber', resultOperation)
+          .set('secondOperationNumber', 0)
           .set('result', resultOperation)
           .set('display', resultOperation);
       }
@@ -60,5 +61,44 @@ const Calculator = (state = initialStateCalculator, action) => {
   }
   return state;
 };
+
+//     } if (state.operator !== '' && state.secondOperationNumber !== 0) {
+//       return {
+//         firstOperationNumber: state.firstOperationNumber,
+//         secondOperationNumber: state.secondOperationNumber + action.payload,
+//         operator: state.operator,
+//         result: 0,
+//         display: state.display + state.secondOperationNumber
+//       };
+//     }
+//   } if (action.type === 'SELECT_OPERATOR') {
+//     return {
+//       firstOperationNumber: state.firstOperationNumber,
+//       secondOperationNumber: 0,
+//       operator: action.payload,
+//       result: 0,
+//       display: state.display + action.payload
+//     };
+//   }
+//   if (action.type === 'PRESS_EQUAL') {
+//     try {
+//       if (state.operator) {
+//         const selectedOperator = symbolToOperate[state.operator];
+//         const resultOperation = String(selectedOperator(Number(state.firstOperationNumber),
+//           Number(state.secondOperationNumber)));
+//         return {
+//           firstOperationNumber: resultOperation,
+//           secondOperationNumber: 0,
+//           operator: '',
+//           result: resultOperation,
+//           display: resultOperation
+//         };
+//       }
+//     } catch (error) {
+//       return 'oh no!';
+//     }
+//   }
+//   return state;
+// };
 
 export default Calculator;
