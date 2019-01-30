@@ -9,12 +9,11 @@ const TodoList = (state = initialTodoModel, action) => {
       .update('listOfTasks', taskList => taskList.push(action.payload));
   }
   if (action.type === 'TOGGLE_TODO') {
-    // para actualizar el estado del toggle, hay que entrar en la list (con 'listOfTasks', tasklist)
-    // una vez dentro, a task list le puedo pasar una función para que haga lo que quiero.
-    // en este caso, quiero que se actualice la tasklist unicamente actualizando el isDone a lo
-    // contrario que tenga el booleano: si es true, a false, y si es false, a true.
-    // Es importante saber que cuando quiero actualizar algo, puedo hacer arrowFunctions que ayuden
-    // a actualizarlo correctamente, como he hecho en este caso.
+    // para actualizar el estado, hay que entrar en la list (con 'listOfTasks', tasklist).
+    // una vez dentro, a task list le puedo pasar una función para que haga lo que quiero:
+    // que se actualice la tasklist unicamente actualizando el isDone a lo contrario 
+    // que tenga el booleano: si es true, a false, y si es false, a true. Si quiero cambiar algo, 
+    // puedo hacer arrowFunctions que ayuden a hacerlo correctamente, como en este caso.
 
     return state
       .update('listOfTasks', tasklist => {

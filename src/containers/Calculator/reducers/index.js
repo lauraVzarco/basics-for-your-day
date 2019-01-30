@@ -15,33 +15,28 @@ const Calculator = (state = initialStateCalculator, action) => {
     return clearCalculator;
   }
   if (action.type === 'PRESS_NUMBER') {
-    if (state.display === 0 && state.operator === '') {
+    if (state.firstOperationNumber === 0 && state.operator === '') {
       return state
-        .set('firstOperationNumber', action.payload)
-        .set('display', action.payload);
+        .set('firstOperationNumber', action.payload);
     } if (state.display !== 0 && state.operator === '') {
       return state
-        .set('firstOperationNumber', state.firstOperationNumber + action.payload)
-        .set('display', state.display + action.payload);
+        .set('firstOperationNumber', state.firstOperationNumber + action.payload);
     }
     if (state.operator !== '' && state.secondOperationNumber === 0) {
       return state
         .set('firstOperationNumber', state.firstOperationNumber)
         .set('secondOperationNumber', action.payload)
-        .set('operator', state.operator)
-        .set('display', state.display + action.payload);
+        .set('operator', state.operator);
     } if (state.operator !== '' && state.secondOperationNumber !== 0) {
       return state
         .set('firstOperationNumber', state.firstOperationNumber)
         .set('secondOperationNumber', state.secondOperationNumber + action.payload)
-        .set('operator', state.operator)
-        .set('display', state.display + state.secondOperationNumber);
+        .set('operator', state.operator);
     }
   } if (action.type === 'SELECT_OPERATOR') {
     return state
       .set('firstOperationNumber', state.firstOperationNumber)
-      .set('operator', action.payload)
-      .set('display', state.display + action.payload);
+      .set('operator', action.payload);
   }
   if (action.type === 'PRESS_EQUAL') {
     try {
@@ -51,9 +46,8 @@ const Calculator = (state = initialStateCalculator, action) => {
           Number(state.secondOperationNumber)));
         return state
           .set('firstOperationNumber', resultOperation)
-          .set('secondOperationNumber', 0)
-          .set('result', resultOperation)
-          .set('display', resultOperation);
+          .set('secondOperationNumber', '')
+          .set('operator', '');
       }
     } catch (error) {
       return 'oh no!';
