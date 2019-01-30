@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { TaskModel } from './models/todo';
 import InputTodo from './components/InputTodo';
 import TodoListPanel from './components/TodoListPanel';
 import FilterPanel from './components/FilterPanel';
@@ -10,7 +11,6 @@ import './style.css';
 import {
   submitTask, pressClear, toggleTask
 } from './actions';
-// import { todo } from './models/todo.js';
 
 class TodoList extends Component {
   static propTypes = {
@@ -31,8 +31,8 @@ class TodoList extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.submitTask(this.state.task);
-    this.setState({ task: '' });
+    this.props.submitTask(new TaskModel({ description: this.state.task }));
+    this.setState({ task: '', index: 0 });
   }
 
   handleDone = (e) => { this.props.toggleTask(e.target.dataset.value); }
@@ -52,7 +52,7 @@ class TodoList extends Component {
       }
       return true;
     });
-    console.log(filteredList, 'filteredList');
+
     return (
       <Fragment>
         <h1 className="todoTitle">todos</h1>

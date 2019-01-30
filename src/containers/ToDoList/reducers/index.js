@@ -5,29 +5,22 @@ const TodoList = (state = initialTodoModel, action) => {
     return state.clear();
   }
   if (action.type === 'ADD_TODO') {
-    const task = {
-      description: action.payload,
-      isDone: false,
-    };
-    return {
-      listOfTasks: state.listOfTasks.concat(task)
-    };
+    return state
+      .update('listOfTasks', taskList => taskList.push(action.payload));
   }
   if (action.type === 'TOGGLE_TODO') {
-    const clickedTaskDescription = action.payload;
-    // encontrar el index de la tarea seleccionada
-    // eslint-disable-next-line max-len
-    const selectedTaskIndex = state.listOfTasks.findIndex(task => task.description === clickedTaskDescription);
-    // Copiar el array de previous task y el objeto del task seleccionado
-    const newListOfTasks = [...state.listOfTasks];
-    const newAddedTask = { ...state.listOfTasks[selectedTaskIndex] };
-    // cambiar el objeto, meterlo en el nuevo array
-    newAddedTask.isDone = !newAddedTask.isDone;
-    newListOfTasks[selectedTaskIndex] = newAddedTask;
-    // cambiar el estado al array nuevo
-    return {
-      listOfTasks: newListOfTasks
-    };
+    // para actualizar el estado del toggle, hay que entrar en la list (con 'listOfTasks', tasklist)
+    // una vez dentro, a task list le puedo pasar una función para que haga lo que quiero.
+    // en este caso, quiero que se actualice la tasklist unicamente actualizando el isDone a lo
+    // contrario que tenga el booleano: si es true, a false, y si es false, a true.
+    // Es importante saber que cuando quiero actualizar algo, puedo hacer arrowFunctions que ayuden
+    // a actualizarlo correctamente, como he hecho en este caso.
+
+    return state
+      .update('listOfTasks', tasklist => {
+        const index = tasklist.findIndex(task => task.description === action.payload);
+        return tasklist.update(index, task => task.update('isDone', isDone => !isDone));
+      });
   }
   return state;
 };

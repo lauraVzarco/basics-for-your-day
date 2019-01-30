@@ -1,9 +1,7 @@
 import { Record, List } from 'immutable';
 
-const ListOfTasks = List([]);
-
 export const TodoModel = Record({
-  listOfTasks: ListOfTasks
+  listOfTasks: List()
 });
 
 export const initialTodoModel = new TodoModel();

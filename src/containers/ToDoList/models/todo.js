@@ -1,4 +1,6 @@
-export const todo = {
+import { Record } from 'immutable';
+
+export const TaskModel = Record({
   description: '',
-  isDone: false
-};
+  isDone: false,
+});
