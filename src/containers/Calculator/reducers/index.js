@@ -17,10 +17,10 @@ const Calculator = (state = initialStateCalculator, action) => {
   if (action.type === 'PRESS_NUMBER') {
     if (state.firstOperationNumber === 0 && state.operator === '') {
       return state
-        .set('firstOperationNumber', action.payload);
-    } if (state.display !== 0 && state.operator === '') {
+        .set('firstOperationNumber', Number(action.payload));
+    } if (state.firstOperationNumber !== 0 && state.operator === '') {
       return state
-        .set('firstOperationNumber', state.firstOperationNumber + action.payload);
+        .set('firstOperationNumber', Number(state.firstOperationNumber + action.payload));
     }
     if (state.operator !== '' && state.secondOperationNumber === 0) {
       return state
@@ -45,12 +45,12 @@ const Calculator = (state = initialStateCalculator, action) => {
         const resultOperation = String(selectedOperator(Number(state.firstOperationNumber),
           Number(state.secondOperationNumber)));
         return state
-          .set('firstOperationNumber', resultOperation)
+          .set('firstOperationNumber', Number(resultOperation))
           .set('secondOperationNumber', '')
           .set('operator', '');
       }
     } catch (error) {
-      return 'oh no!';
+      return state.set('firstOperationNumber', 'OH NO!!!!!!!!!');
     }
   }
   return state;

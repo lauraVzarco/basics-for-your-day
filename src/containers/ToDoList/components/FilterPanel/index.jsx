@@ -15,10 +15,14 @@ class FiltersPanel extends Component {
     const unCompletedClass = (selectedFilter !== 'uncompleted') ? 'inactive' : 'isActive';
     const completedClass = (selectedFilter !== 'completed') ? 'inactive' : 'isActive';
     const allClass = (selectedFilter !== null) ? 'inactive' : 'isActive';
+    const itemsInList = () => {
+      if (numberOfItems === 1) { return `${numberOfItems} item`; }
+      return `${numberOfItems} items`;
+    };
 
     return (
       <Fragment>
-        <div className="filterPanelCounter"> {numberOfItems} items</div>
+        <div className="filterPanelCounter"> {itemsInList()} </div>
         <div className="filterPanelMenu">
           <NavLink
             to={ { pathname: '/todolist' } }

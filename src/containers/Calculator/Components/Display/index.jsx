@@ -4,7 +4,7 @@ import './styles.css';
 
 class Display extends Component {
   static propTypes = {
-    value: PropTypes.number,
+    value: PropTypes.string,
     display: PropTypes.number
   }
 
@@ -16,7 +16,7 @@ class Display extends Component {
             {this.props.value}
           </div>
           < div className="DisplayContent" >
-            {this.props.display}
+            {Number(this.props.display)}
           </div >
         </div>
       </Fragment>

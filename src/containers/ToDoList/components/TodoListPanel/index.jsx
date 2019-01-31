@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class TodoListPanel extends Component {
   static propTypes = {
-    list: PropTypes.array,
+    list: PropTypes.object,
     handleDone: PropTypes.func,
   }
 

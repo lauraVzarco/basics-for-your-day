@@ -7,6 +7,7 @@ import InputTodo from './components/InputTodo';
 import TodoListPanel from './components/TodoListPanel';
 import FilterPanel from './components/FilterPanel';
 import ClearButton from './components/ClearButton';
+import Modal from './components/Modal';
 import './style.css';
 import {
   submitTask, pressClear, toggleTask
@@ -19,7 +20,7 @@ class TodoList extends Component {
     toggleTask: PropTypes.func,
     clear: PropTypes.func,
     location: PropTypes.object,
-    listOfTasks: PropTypes.array,
+    listOfTasks: PropTypes.object,
     inputTask: PropTypes.string
   }
 
@@ -32,7 +33,7 @@ class TodoList extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.submitTask(new TaskModel({ description: this.state.task }));
-    this.setState({ task: '', index: 0 });
+    this.setState({ task: '' });
   }
 
   handleDone = (e) => { this.props.toggleTask(e.target.dataset.value); }
@@ -70,10 +71,11 @@ class TodoList extends Component {
           />
           <FilterPanel
             onClick={ this.handleFilter }
-            numberOfItems={ filteredList.length }
+            numberOfItems={ filteredList.size }
             selectedFilter={ filterParam }
           />
         </div>
+        {/* <Modal /> */}
         <Link to="/">Home</Link>
       </Fragment >
     );

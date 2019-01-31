@@ -21,7 +21,7 @@ class Calculator extends Component {
     operator: PropTypes.func,
     operatorDisplay: PropTypes.string,
     firstOperationNumber: PropTypes.number,
-    secondOperationNumber: PropTypes.number,
+    secondOperationNumber: PropTypes.string,
   }
 
   // Para juntar utilidades de botones
@@ -50,7 +50,8 @@ class Calculator extends Component {
         <div className="Calculator">
           <div className="CalculatorName">🐰Piwi🐰</div>
           <Display value={ this.showDisplay() }
-            display={ this.props.secondOperationNumber || this.props.firstOperationNumber } />
+            display={ Number(this.props.secondOperationNumber || this.props.firstOperationNumber) }
+          />
           <ButtonPannel onClick={ this.handleClick }
           />
           <div className="CalculatorBrand" >Laura Vargas</div>
