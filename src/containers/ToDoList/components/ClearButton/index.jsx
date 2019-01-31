@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 class ClearButton extends Component {
   static propTypes = {
-    handleClear: PropTypes.func
+    handleModal: PropTypes.func
   }
 
   render() {
     return (
       <Fragment>
         <button
-          onClick={ this.props.handleClear }
+          onClick={ this.props.handleModal }
           className="buttonClear">
           Clear
         </button>
