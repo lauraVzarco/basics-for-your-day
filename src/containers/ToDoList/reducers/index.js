@@ -14,12 +14,12 @@ const TodoList = (state = initialTodoModel, action) => {
     // que se actualice la tasklist unicamente actualizando el isDone a lo contrario 
     // que tenga el booleano: si es true, a false, y si es false, a true. Si quiero cambiar algo, 
     // puedo hacer arrowFunctions que ayuden a hacerlo correctamente, como en este caso.
-
     return state
       .update('listOfTasks', tasklist => {
-        const index = tasklist.findIndex(task => task.id === action.payload);
+        const index = tasklist.findIndex(task => task.id === Number(action.payload));
         return tasklist.update(index, task => task.update('isDone', isDone => !isDone));
       });
+
   }
   return state;
 };
