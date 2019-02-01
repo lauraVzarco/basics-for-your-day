@@ -17,7 +17,7 @@ const TodoList = (state = initialTodoModel, action) => {
 
     return state
       .update('listOfTasks', tasklist => {
-        const index = tasklist.findIndex(task => task.description === action.payload);
+        const index = tasklist.findIndex(task => task.id === action.payload);
         return tasklist.update(index, task => task.update('isDone', isDone => !isDone));
       });
   }

@@ -12,7 +12,7 @@ export const pressClear = (list) => ({
   payload: list,
 });
 
-export const toggleTask = (description) => ({
+export const toggleTask = (id) => ({
   type: TOGGLE_TODO,
-  payload: description
+  payload: id
 });

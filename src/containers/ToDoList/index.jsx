@@ -27,6 +27,7 @@ class TodoList extends Component {
 
   state = {
     task: '',
+    id: 0,
     modalClearIsOpen: false,
     modalExitIsOpen: false
   }
@@ -35,13 +36,13 @@ class TodoList extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.submitTask(new TaskModel({ description: this.state.task }));
+    this.props.submitTask(new TaskModel({ description: this.state.task, id: ++this.state.id }));
     this.setState({ task: '' });
   }
 
   handleDone = (e) => { this.props.toggleTask(e.target.dataset.value); }
 
-  handleClear = () => { this.props.clear(); }
+  handleClear = () => { this.props.clear(); this.setState({ id: 0 }); }
 
   handleClearModal = () => { this.setState({ modalClearIsOpen: !this.state.modalClearIsOpen }); }
 

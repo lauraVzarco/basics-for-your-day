@@ -11,7 +11,7 @@ class TodoListPanel extends Component {
   render() {
     const {
       list,
-      handleDone,
+      handleDone
     } = this.props;
 
     return (
@@ -21,7 +21,7 @@ class TodoListPanel extends Component {
             key={ index }
             className={ task.isDone ? 'done' : 'notdone' }
             onDoubleClick={ handleDone }
-            data-value={ task.description }
+            data-value={ task.id }
           >
             {task.description}
           </li>
