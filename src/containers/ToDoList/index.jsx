@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,7 +7,8 @@ import InputTodo from './components/InputTodo';
 import TodoListPanel from './components/TodoListPanel';
 import FilterPanel from './components/FilterPanel';
 import ClearButton from './components/ClearButton';
-import Modal from './components/Modal';
+import ModalClear from './components/ModalClear';
+import ModalExit from './components/ModalExit';
 import './style.css';
 import {
   submitTask, pressClear, toggleTask
@@ -25,7 +26,9 @@ class TodoList extends Component {
   }
 
   state = {
-    task: ''
+    task: '',
+    modalClearIsOpen: false,
+    modalExitIsOpen: false
   }
 
   handleTask = e => { this.setState({ task: e.target.value }); }
@@ -40,6 +43,19 @@ class TodoList extends Component {
 
   handleClear = () => { this.props.clear(); }
 
+  handleClearModal = () => { this.setState({ modalClearIsOpen: !this.state.modalClearIsOpen }); }
+
+  handleExitModal = () => { this.setState({ modalExitIsOpen: !this.state.modalExitIsOpen }); }
+
+  // eslint-disable-next-line consistent-return
+  closeModalWithEsc = (e) => {
+    if (e.keyCode === 27) {
+      this.setState({
+        modalClearIsOpen: false,
+        modalExitIsOpen: false
+      });
+    } else return null;
+  }
 
   render() {
 
@@ -55,10 +71,15 @@ class TodoList extends Component {
     });
 
     return (
-      <Fragment>
+      <div onKeyDown={ this.closeModalWithEsc }>
         <h1 className="todoTitle">todos</h1>
         <div className="todoClearbutton">
-          <ClearButton handleClear={ this.props.clear } />
+          <ClearButton handleModal={ this.handleClearModal } />
+          {this.state.modalClearIsOpen === true && this.props.listOfTasks.size >= 1
+            ? <ModalClear handleClear={ this.handleClear }
+              handleClearModal={ this.handleClearModal }
+              closeModalWithEsc={ this.closeModalWithEsc } />
+            : null}
         </div>
         <div className="todoContainer">
           <InputTodo
@@ -75,9 +96,17 @@ class TodoList extends Component {
             selectedFilter={ filterParam }
           />
         </div>
-        {/* <Modal /> */}
-        <Link to="/">Home</Link>
-      </Fragment >
+        {this.props.listOfTasks.size >= 1
+          ? <button onClick={ this.handleExitModal }> Home </button>
+          : <Link to="/"><button onClick={ this.handleExitModal }>  Home  </button></Link>
+        }
+        {this.state.modalExitIsOpen === true && this.props.listOfTasks.size >= 1
+          ? <ModalExit
+            handleExitModal={ this.handleExitModal }
+            closeModalWithEsc={ this.closeModalWithEsc } />
+          : null
+        }
+      </div >
     );
   }
 }

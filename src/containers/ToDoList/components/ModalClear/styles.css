@@ -1,15 +1,36 @@
+.ModalBackground {
+  position:absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../../modalbackground.png");
+  margin:0px;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
 .ModalContainer {
-    position: relative;
+  position: relative;
+  transform: translate(50%, 50%); 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 50%;
     margin: 0;
-    padding: 50px;
+    padding: 35px;
     background-color: white;
     border-radius: 30px;
     box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
+.ExitButton {
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 95%;
 }
 
 .ModalMessage {

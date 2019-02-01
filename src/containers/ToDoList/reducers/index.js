@@ -2,7 +2,7 @@ import { initialTodoModel } from '../models';
 
 const TodoList = (state = initialTodoModel, action) => {
   if (action.type === 'CLEAR') {
-    return state.clear();
+    return state.update('listOfTasks', taskList => taskList.clear());
   }
   if (action.type === 'ADD_TODO') {
     return state
