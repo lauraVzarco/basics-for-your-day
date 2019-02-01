@@ -5,14 +5,24 @@ import PropTypes from 'prop-types';
 
 class ModalExit extends Component {
   static propTypes = {
-    handleExitModal: PropTypes.func
+    handleExitModal: PropTypes.func,
+    closeModalWithEsc: PropTypes.func
   }
 
   render() {
     return (
-      <nav className="ModalBackground" onClick={ this.props.handleExitModal }>
+      <nav
+        className="ModalBackground"
+        onClick={ this.props.handleExitModal }
+      >
         <div className="ModalContainer">
-          <h2 className="ModalMessage"> Are you sure you want to exit? </h2>
+          <button className="ExitButton"
+            onClick={ this.props.handleExitModal }>
+            X
+          </button>
+          <h2 className="ModalMessage">
+            Are you sure you want to exit?
+          </h2>
           <div>
             <Link to="/">
               <button
@@ -20,7 +30,8 @@ class ModalExit extends Component {
                 Yes
               </button>
             </Link>
-            <button className="ModalButton_No"
+            <button
+              className="ModalButton_No"
               onClick={ this.props.handleExitModal }>
               Nope
             </button>

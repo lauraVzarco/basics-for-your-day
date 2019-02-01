@@ -47,6 +47,15 @@ class TodoList extends Component {
 
   handleExitModal = () => { this.setState({ modalExitIsOpen: !this.state.modalExitIsOpen }); }
 
+  closeModalWithEsc = (e) => {
+    if (e.keyCode === 27) {
+      this.setState({
+        modalClearIsOpen: false,
+        modalExitIsOpen: false
+      });
+    } else return null;
+  }
+
   render() {
 
     const { location } = this.props;
@@ -61,13 +70,14 @@ class TodoList extends Component {
     });
 
     return (
-      <Fragment>
+      <div onKeyDown={ this.closeModalWithEsc }>
         <h1 className="todoTitle">todos</h1>
         <div className="todoClearbutton">
           <ClearButton handleModal={ this.handleClearModal } />
           {this.state.modalClearIsOpen === true && this.props.listOfTasks.size >= 1
             ? <ModalClear handleClear={ this.handleClear }
-              handleClearModal={ this.handleClearModal } />
+              handleClearModal={ this.handleClearModal }
+              closeModalWithEsc={ this.closeModalWithEsc } />
             : null}
         </div>
         <div className="todoContainer">
@@ -90,10 +100,12 @@ class TodoList extends Component {
           : <Link to="/"><button onClick={ this.handleExitModal }>  Home  </button></Link>
         }
         {this.state.modalExitIsOpen === true && this.props.listOfTasks.size >= 1
-          ? <ModalExit handleExitModal={ this.handleExitModal } />
+          ? <ModalExit
+            handleExitModal={ this.handleExitModal }
+            closeModalWithEsc={ this.closeModalWithEsc } />
           : null
         }
-      </Fragment >
+      </div >
     );
   }
 }
