@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -47,6 +47,7 @@ class TodoList extends Component {
 
   handleExitModal = () => { this.setState({ modalExitIsOpen: !this.state.modalExitIsOpen }); }
 
+  // eslint-disable-next-line consistent-return
   closeModalWithEsc = (e) => {
     if (e.keyCode === 27) {
       this.setState({
