@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -36,6 +37,8 @@ class TodoList extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    // eslint-disable-next-line no-plusplus
+    // eslint-disable-next-line react/no-direct-mutation-state
     this.props.submitTask(new TaskModel({ description: this.state.task, id: ++this.state.id }));
     this.setState({ task: '' });
   }
