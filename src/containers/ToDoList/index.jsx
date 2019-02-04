@@ -1,6 +1,5 @@
 /* eslint-disable no-plusplus */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TaskModel } from './models/todo';
@@ -8,7 +7,7 @@ import InputTodo from './components/InputTodo';
 import TodoListPanel from './components/TodoListPanel';
 import FilterPanel from './components/FilterPanel';
 import ClearButton from './components/ClearButton';
-import Modal from './components/Modal';
+import ConfirmationModal from './components/ConfirmationModal';
 import './style.css';
 import {
   submitTask, pressClear, toggleTask
@@ -20,6 +19,7 @@ class TodoList extends Component {
     submitTask: PropTypes.func,
     toggleTask: PropTypes.func,
     clear: PropTypes.func,
+    history: PropTypes.object,
     location: PropTypes.object,
     listOfTasks: PropTypes.object,
     inputTask: PropTypes.string
@@ -48,20 +48,8 @@ class TodoList extends Component {
 
   handleModal = () => { this.setState({ modalIsOpen: !this.state.modalIsOpen }); }
 
-  handleOnClickExit = () => {
-    this.setState({
-      exitIsNeeded: true,
-      modalIsOpen: !this.state.modalIsOpen
-    });
-  };
-
-  // eslint-disable-next-line consistent-return
-  closeModalWithEsc = (e) => {
-    if (e.keyCode === 27) {
-      this.setState({
-        modalIsOpen: false,
-      });
-    } else return null;
+  goToHome = () => {
+    this.props.history.push('/');
   }
 
   render() {
@@ -81,7 +69,9 @@ class TodoList extends Component {
       <div onKeyDown={ this.closeModalWithEsc }>
         <h1 className="todoTitle">todos</h1>
         <div className="todoClearbutton">
-          <ClearButton handleModal={ this.handleModal } />
+          <ConfirmationModal message="delete all your todos?" onAccept={ this.handleClear }>
+            <ClearButton />
+          </ConfirmationModal>
         </div>
         <div className="todoContainer">
           <InputTodo
@@ -99,18 +89,13 @@ class TodoList extends Component {
           />
         </div>
         {this.props.listOfTasks.size >= 1
-          ? <button onClick={ this.handleOnClickExit }> Home </button>
-          : <Link to="/">
-            <button onClick={ this.handleOnClickExit }>  Home  </button>
-          </Link>
+          ? <ConfirmationModal message="exit??" onAccept={ this.goToHome }>
+            <button>  Home  </button>
+          </ConfirmationModal>
+          : <button> Home </button>
         }
         <div>
-          {this.state.modalIsOpen === true && this.props.listOfTasks.size >= 1
-            ? <Modal
-              handleClear={ this.handleClear }
-              handleModal={ this.handleModal }
-              handleExit={ this.state.exitIsNeeded } />
-            : null}
+
         </div>
 
       </div >
