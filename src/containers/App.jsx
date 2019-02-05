@@ -13,12 +13,8 @@ class App extends Component {
           <Switch>
             <Route exact={ true } path="/">
               <div className="appContainer">
-                <h1 className="appTitle">
-                  Hi! This is Basics for your day.
-                </h1 >
-                <h2 className="appSubtitle">
-                  What do you want?
-                </h2>
+                <h1 className="appTitle"> Hi! This is Basics for your day. </h1 >
+                <h2 className="appSubtitle"> What do you want? </h2>
                 <ul className="appList">
                   <li className="appElement">
                     <Link to="/calculator"

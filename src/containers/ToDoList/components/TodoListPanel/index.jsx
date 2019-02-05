@@ -17,8 +17,7 @@ class TodoListPanel extends Component {
     return (
       <ul className="TodoListList">
         {list.map((task, index) => (
-          <li
-            key={ index }
+          <li key={ index }
             className={ task.isDone ? 'done' : 'notdone' }
             onDoubleClick={ handleDone }
             data-value={ task.id }

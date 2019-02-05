@@ -6,24 +6,31 @@ class ConfirmationModal extends Component {
   static propTypes = {
     message: PropTypes.string,
     onAccept: PropTypes.func,
-    closeModalWithEsc: PropTypes.func
+    closeModalWithEsc: PropTypes.func,
+    children: PropTypes.object
   }
 
   state = {
     isVisible: false
   }
 
-  setVisibility = isVisible => {
+  setVisibility = (isVisible) => {
     this.setState({ isVisible });
   }
 
-  // eslint-disable-next-line consistent-return
   closeModalWithEsc = (e) => {
     if (e.keyCode === 27) {
       this.setVisibility(false);
-    } else return null;
+    }
   }
 
+  componentWillMount() {
+    document.addEventListener('keydown', this.closeModalWithEsc);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.closeModalWithEsc);
+  }
 
   render() {
     const { message, onAccept, closeModalWithEsc } = this.props;
@@ -31,12 +38,10 @@ class ConfirmationModal extends Component {
     const title = ` Are you sure you want to ${message}`;
 
     const modal = this.state.isVisible && (
-      <div className="ModalBackground" onClick={ () => this.setVisibility(false) } >
-        <div className="ModalContainer">
+      <div className="Background" onKeyPress={ closeModalWithEsc } onClick={ () => this.setVisibility(false) } >
+        <div className="Foreground" onClick={ e => e.stopPropagation() }>
           <button className="ExitButton" onClick={ () => this.setVisibility(false) }>X</button>
-
           <h2 className="ModalMessage">{title}</h2>
-
           <div>
             <button onClick={ () => this.setVisibility(false) }
               className="ModalButton_No" >
@@ -52,7 +57,7 @@ class ConfirmationModal extends Component {
     );
 
     return (
-      <div onKeyPress={ closeModalWithEsc }>
+      <div >
         {modal}
         <div onClick={ () => this.setVisibility(true) }>
           {this.props.children}

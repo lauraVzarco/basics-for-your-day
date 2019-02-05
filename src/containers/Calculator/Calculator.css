@@ -21,3 +21,15 @@
     font-size: 18px;
     margin-top: 10px;
 }
+
+.homeButton {
+    width: auto;
+    background-color: transparent;
+    border-color:darkmagenta;
+    border-radius: 25px;
+    color: darkmagenta;
+    box-shadow:none;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 50px;
+    }

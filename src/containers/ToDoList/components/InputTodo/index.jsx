@@ -20,11 +20,8 @@ class InputTodo extends Component {
     return (
       <Fragment>
         <form onSubmit={ onSubmit }>
-          <label
-            htmlFor="todo"
-            className="inputTodoLabel"> Todo </label>
-          <input
-            type="text"
+          <label htmlFor="todo" className="inputTodoLabel"> Todo </label>
+          <input type="text"
             placeholder="Whats need to be done?"
             className="inputTodoInput"
             value={ todo }

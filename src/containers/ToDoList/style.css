@@ -27,3 +27,15 @@
     border-color: #dfdcdc #d9d6d6 #ccc;
     border-radius: 2px;
     box-shadow: 4px 18px 55px -1px rgba(0,0,0,0.38);}
+
+.homeButton {
+    width: auto;
+    background-color: transparent;
+    border-color:darkmagenta;
+    border-radius: 25px;
+    color: darkmagenta;
+    box-shadow:none;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 50px;
+    }
