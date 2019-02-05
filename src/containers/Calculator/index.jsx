@@ -55,7 +55,7 @@ class Calculator extends Component {
           <ButtonPannel onClick={ this.handleClick }
           />
           <div className="CalculatorBrand" >Laura Vargas</div>
-        </div><Link to="/">Home</Link>
+        </div><Link to="/"> <button className="homeButton">Home</button> </Link>
       </Fragment>
     );
   }

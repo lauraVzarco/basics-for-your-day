@@ -24,26 +24,17 @@ class FiltersPanel extends Component {
       <Fragment>
         <div className="filterPanelCounter"> {itemsInList()} </div>
         <div className="filterPanelMenu">
-          <NavLink
-            to={ { pathname: '/todolist' } }
-            activeClassName={ allClass }
-          >
+          <NavLink to={ { pathname: '/todolist' } } activeClassName={ allClass }>
             <div data-value="all">
               All
             </div>
           </NavLink>
-          <NavLink
-            to={ { pathname: '/todolist', search: '?filter=uncompleted' } }
-            activeClassName={ unCompletedClass }
-          >
+          <NavLink to={ { pathname: '/todolist', search: '?filter=uncompleted' } } activeClassName={ unCompletedClass } >
             <div data-value="uncompleted">
               Uncompleted
             </div>
           </NavLink>
-          <NavLink
-            to={ { search: '?filter=completed' } }
-            exact={ true } activeClassName={ completedClass }
-          >
+          <NavLink to={ { search: '?filter=completed' } } exact={ true } activeClassName={ completedClass } >
             <div data-value="completed">
               Completed
             </div>

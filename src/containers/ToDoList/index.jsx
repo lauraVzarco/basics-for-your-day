@@ -1,6 +1,5 @@
-/* eslint-disable no-plusplus */
+/* eslint-disable no-plusplus */ /* eslint-disable react/no-direct-mutation-state */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TaskModel } from './models/todo';
@@ -8,12 +7,9 @@ import InputTodo from './components/InputTodo';
 import TodoListPanel from './components/TodoListPanel';
 import FilterPanel from './components/FilterPanel';
 import ClearButton from './components/ClearButton';
-import ModalClear from './components/ModalClear';
-import ModalExit from './components/ModalExit';
+import ConfirmationModal from './components/ConfirmationModal';
 import './style.css';
-import {
-  submitTask, pressClear, toggleTask
-} from './actions';
+import { submitTask, pressClear, toggleTask } from './actions';
 
 class TodoList extends Component {
   static propTypes = {
@@ -21,6 +17,7 @@ class TodoList extends Component {
     submitTask: PropTypes.func,
     toggleTask: PropTypes.func,
     clear: PropTypes.func,
+    history: PropTypes.object,
     location: PropTypes.object,
     listOfTasks: PropTypes.object,
     inputTask: PropTypes.string
@@ -29,16 +26,13 @@ class TodoList extends Component {
   state = {
     task: '',
     id: 0,
-    modalClearIsOpen: false,
-    modalExitIsOpen: false
+    modalIsOpen: false,
   }
 
   handleTask = e => { this.setState({ task: e.target.value }); }
 
   onSubmit = e => {
     e.preventDefault();
-    // eslint-disable-next-line no-plusplus
-    // eslint-disable-next-line react/no-direct-mutation-state
     this.props.submitTask(new TaskModel({ description: this.state.task, id: ++this.state.id }));
     this.setState({ task: '' });
   }
@@ -47,30 +41,17 @@ class TodoList extends Component {
 
   handleClear = () => { this.props.clear(); this.setState({ id: 0 }); }
 
-  handleClearModal = () => { this.setState({ modalClearIsOpen: !this.state.modalClearIsOpen }); }
+  handleModal = () => { this.setState({ modalIsOpen: !this.state.modalIsOpen }); }
 
-  handleExitModal = () => { this.setState({ modalExitIsOpen: !this.state.modalExitIsOpen }); }
-
-  // eslint-disable-next-line consistent-return
-  closeModalWithEsc = (e) => {
-    if (e.keyCode === 27) {
-      this.setState({
-        modalClearIsOpen: false,
-        modalExitIsOpen: false
-      });
-    } else return null;
-  }
+  goToHome = () => { this.props.history.push('/'); }
 
   render() {
 
     const { location } = this.props;
     const filterParam = new URLSearchParams(location.search).get('filter');
     const filteredList = this.props.listOfTasks.filter((task) => {
-      if (filterParam === 'completed') {
-        return task.isDone === true;
-      } if (filterParam === 'uncompleted') {
-        return task.isDone === false;
-      }
+      if (filterParam === 'completed') { return task.isDone === true; }
+      if (filterParam === 'uncompleted') { return task.isDone === false; }
       return true;
     });
 
@@ -78,43 +59,29 @@ class TodoList extends Component {
       <div onKeyDown={ this.closeModalWithEsc }>
         <h1 className="todoTitle">todos</h1>
         <div className="todoClearbutton">
-          <ClearButton handleModal={ this.handleClearModal } />
-          {this.state.modalClearIsOpen === true && this.props.listOfTasks.size >= 1
-            ? <ModalClear handleClear={ this.handleClear }
-              handleClearModal={ this.handleClearModal }
-              closeModalWithEsc={ this.closeModalWithEsc } />
-            : null}
+          <ConfirmationModal message="delete all your todos?" onAccept={ this.handleClear }>
+            <ClearButton />
+          </ConfirmationModal>
         </div>
         <div className="todoContainer">
-          <InputTodo
-            todo={ this.state.task }
+          <InputTodo todo={ this.state.task }
             handleTask={ this.handleTask }
             onSubmit={ this.onSubmit } />
-          <TodoListPanel
-            handleDone={ this.handleDone }
-            list={ filteredList }
-          />
-          <FilterPanel
-            onClick={ this.handleFilter }
+          <TodoListPanel handleDone={ this.handleDone } list={ filteredList } />
+          <FilterPanel onClick={ this.handleFilter }
             numberOfItems={ filteredList.size }
-            selectedFilter={ filterParam }
-          />
+            selectedFilter={ filterParam } />
         </div>
         {this.props.listOfTasks.size >= 1
-          ? <button onClick={ this.handleExitModal }> Home </button>
-          : <Link to="/"><button onClick={ this.handleExitModal }>  Home  </button></Link>
-        }
-        {this.state.modalExitIsOpen === true && this.props.listOfTasks.size >= 1
-          ? <ModalExit
-            handleExitModal={ this.handleExitModal }
-            closeModalWithEsc={ this.closeModalWithEsc } />
-          : null
+          ? <ConfirmationModal message="exit??" onAccept={ this.goToHome }>
+            <button className="homeButton">  Home  </button>
+          </ConfirmationModal>
+          : <button onClick={ this.goToHome } className="homeButton"> Home </button>
         }
       </div >
     );
   }
 }
-
 
 const mapDispatchToProps = dispatch => ({
   clear: () => dispatch(pressClear()),
