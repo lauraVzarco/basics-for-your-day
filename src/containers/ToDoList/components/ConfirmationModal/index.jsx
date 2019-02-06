@@ -32,14 +32,14 @@ class ConfirmationModal extends Component {
     document.removeEventListener('keydown', this.closeModalWithEsc);
   }
 
-  shouldComponentUpdate(nextState) {
-    if (this.state.isVisible === false) return false;
-    if (this.state.isVisible === true) return true;
+  shouldComponentUpdate(nextProps, nextState) {
     if (this.state.isVisible !== nextState.isVisible) return true;
     return false;
   }
 
   render() {
+
+    console.log('conrifmModal');
     const { message, onAccept, closeModalWithEsc } = this.props;
 
     const title = ` Are you sure you want to ${message}`;
