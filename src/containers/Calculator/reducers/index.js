@@ -1,7 +1,5 @@
 import { initialStateCalculator } from '../models';
 
-// Para operar
-
 const symbolToOperate = {
   '+': (a, b) => a + b,
   '-': (a, b) => a - b,
@@ -11,8 +9,7 @@ const symbolToOperate = {
 
 const Calculator = (state = initialStateCalculator, action) => {
   if (action.type === 'PRESS_CLEAR') {
-    const clearCalculator = state.clear();
-    return clearCalculator;
+    if (state.firstOperationNumber !== 0) return state.clear();
   }
   if (action.type === 'PRESS_NUMBER') {
     if (state.firstOperationNumber === 0 && state.operator === '') {

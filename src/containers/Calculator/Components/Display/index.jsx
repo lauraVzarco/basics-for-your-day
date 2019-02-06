@@ -8,6 +8,10 @@ class Display extends Component {
     display: PropTypes.number
   }
 
+  shouldComponentUpdate() {
+    return true;
+  }
+
   render() {
     return (
       <Fragment>

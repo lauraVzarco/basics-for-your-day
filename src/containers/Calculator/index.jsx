@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import './Calculator.css';
+import './styles.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ButtonPannel from './Components/ButtonPannel';
@@ -70,11 +70,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = (state) => ({
-  display: state.Calculator.display,
   firstOperationNumber: state.Calculator.firstOperationNumber,
   secondOperationNumber: state.Calculator.secondOperationNumber,
   operatorDisplay: state.Calculator.operator,
-  result: state.Calculator.result
 });
 
 
