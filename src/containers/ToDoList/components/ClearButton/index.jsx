@@ -7,12 +7,14 @@ class ClearButton extends Component {
     handleModal: PropTypes.func
   }
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return (
       <Fragment>
-        <button
-          onClick={ this.props.handleModal }
-          className="buttonClear">
+        <button className="buttonClear">
           Clear
         </button>
       </Fragment>

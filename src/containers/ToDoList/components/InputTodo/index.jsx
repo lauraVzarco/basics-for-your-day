@@ -10,6 +10,13 @@ class InputTodo extends Component {
     onSubmit: PropTypes.func
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.onSubmit !== nextProps.onSubmit) return true;
+    if (this.props.todo === nextProps.todo) return false;
+    return true;
+
+  }
+
   render() {
     const {
       todo,

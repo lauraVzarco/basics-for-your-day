@@ -10,6 +10,12 @@ class FiltersPanel extends Component {
     selectedFilter: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.numberOfItems !== nextProps.numberOfItems) { return true; }
+    if (this.props.selectedFilter !== nextProps.selectedFilter) return true;
+    return false;
+  }
+
   render() {
     const { numberOfItems, selectedFilter } = this.props;
     const unCompletedClass = (selectedFilter !== 'uncompleted') ? 'inactive' : 'isActive';

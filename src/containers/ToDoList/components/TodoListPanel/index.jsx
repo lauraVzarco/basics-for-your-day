@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
 
-class TodoListPanel extends Component {
+class TodoListPanel extends PureComponent {
   static propTypes = {
     list: PropTypes.object,
     handleDone: PropTypes.func,

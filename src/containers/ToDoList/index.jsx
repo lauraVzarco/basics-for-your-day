@@ -26,7 +26,6 @@ class TodoList extends Component {
   state = {
     task: '',
     id: 0,
-    modalIsOpen: false,
   }
 
   handleTask = e => { this.setState({ task: e.target.value }); }
@@ -44,6 +43,10 @@ class TodoList extends Component {
   handleModal = () => { this.setState({ modalIsOpen: !this.state.modalIsOpen }); }
 
   goToHome = () => { this.props.history.push('/'); }
+
+  shouldComponentUpdate() {
+    return true;
+  }
 
   render() {
 

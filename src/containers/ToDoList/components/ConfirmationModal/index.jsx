@@ -32,23 +32,32 @@ class ConfirmationModal extends Component {
     document.removeEventListener('keydown', this.closeModalWithEsc);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.isVisible !== nextState.isVisible) return true;
+    return false;
+  }
+
   render() {
+
+    console.log('conrifmModal');
     const { message, onAccept, closeModalWithEsc } = this.props;
 
     const title = ` Are you sure you want to ${message}`;
 
     const modal = this.state.isVisible && (
-      <div className="Background" onKeyPress={ closeModalWithEsc } onClick={ () => this.setVisibility(false) } >
+      <div
+        className="Background"
+        onKeyPress={ closeModalWithEsc }
+        onClick={ () => this.setVisibility(false) }
+      >
         <div className="Foreground" onClick={ e => e.stopPropagation() }>
           <button className="ExitButton" onClick={ () => this.setVisibility(false) }>X</button>
           <h2 className="ModalMessage">{title}</h2>
           <div>
-            <button onClick={ () => this.setVisibility(false) }
-              className="ModalButton_No" >
+            <button onClick={ () => this.setVisibility(false) } className="ModalButton_No" >
               Nope
             </button>
-            <button onClick={ onAccept }
-              className="ModalButton_Yes">
+            <button onClick={ onAccept } className="ModalButton_Yes">
               Yep
             </button>
           </div>
